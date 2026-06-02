@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chat Assistant – SbayRean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #161922;
+      --border:    #252836;
+      --accent:    #7c6af7;
+      --accent2:   #5ef0b4;
+      --text:      #f0f2f8;
+      --muted:     #6b7280;
+      --user-bg:   #1e2133;
+      --ai-bg:     #131620;
+      --radius:    14px;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .logo-link { text-decoration: none; }
+    .logo-text  { font-family: var(--font-mono); font-size: 18px; color: var(--accent); letter-spacing: -0.5px; }
+    .header-title {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-title span { color: var(--text); font-weight: 500; }
+    .btn-outline {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Chat layout ── */
+    .chat-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      overflow: hidden;
+    }
+
+    /* ── Messages ── */
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .msg {
+      display: flex;
+      gap: 12px;
+      animation: fadeUp .3s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg.user  { flex-direction: row-reverse; }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-top: 2px;
+    }
+    .msg.ai   .avatar { background: linear-gradient(135deg, var(--accent), #4f46e5); }
+    .msg.user .avatar { background: linear-gradient(135deg, #10b981, var(--accent2)); }
+
+    .bubble {
+      max-width: 72%;
+      padding: 13px 17px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      line-height: 1.65;
+      border: 1px solid var(--border);
+    }
+    .msg.ai   .bubble { background: var(--ai-bg);   border-color: var(--border); }
+    .msg.user .bubble { background: var(--user-bg); border-color: #2e3350; }
+
+    .bubble pre {
+      background: #0a0c12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bubble code { font-family: var(--font-mono); font-size: 13px; color: var(--accent2); }
+
+    /* typing indicator */
+    .typing-dots span {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 1.2s infinite ease-in-out both;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: .2s; }
+    .typing-dots span:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink {
+      0%,80%,100% { opacity: .2; transform: scale(.8); }
+      40%          { opacity: 1;  transform: scale(1);  }
+    }
+
+    /* ── Input bar ── */
+    .input-bar {
+      padding: 16px 0 22px;
+      flex-shrink: 0;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      transition: border-color .2s;
+    }
+    .input-row:focus-within { border-color: var(--accent); }
+    #userInput {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      resize: none;
+      max-height: 160px;
+      line-height: 1.5;
+    }
+    #userInput::placeholder { color: var(--muted); }
+    .send-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 9px;
+      width: 38px; height: 38px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .2s, transform .1s;
+    }
+    .send-btn:hover  { background: #9580ff; }
+    .send-btn:active { transform: scale(.93); }
+    .send-btn svg { fill: #fff; width: 18px; height: 18px; }
+
+    /* welcome */
+    .welcome {
+      text-align: center;
+      padding: 48px 0;
+      color: var(--muted);
+    }
+    .welcome h2 { font-size: 22px; color: var(--text); margin-bottom: 8px; }
+    .welcome p  { font-size: 14px; line-height: 1.7; max-width: 420px; margin: 0 auto 24px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 15px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text);
+      transition: all .2s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* error */
+    .error-note { color: #f87171; font-size: 13px; margin-top: 6px; text-align: center; display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../../index.html" class="logo-link">
+      <span class="logo-text">SbayRean</span>
+  </a>
+  
+  <div class="header-title">💬 <span>AI Chat Assistant</span></div>
+  
+  <a href="../../index.html" class="btn-outline">← Back to Home</a>
+</header>
+
+<div class="chat-wrapper">
+  <div id="messages">
+    <div class="welcome" id="welcome">
+      <h2>Hello! 👋 How can I help?</h2>
+      <p>Ask me anything — debug code, explain a concept, brainstorm ideas, or just chat.</p>
+      <div class="chips">
+        <div class="chip" onclick="sendChip(this)">Explain async/await in JavaScript</div>
+        <div class="chip" onclick="sendChip(this)">How do I center a div in CSS?</div>
+        <div class="chip" onclick="sendChip(this)">Write a Python function to sort a list</div>
+        <div class="chip" onclick="sendChip(this)">What is REST API?</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="error-note" id="errorNote">⚠️ Something went wrong. Please try again.</p>
+
+  <div class="input-bar">
+    <div class="input-row">
+      <textarea id="userInput" rows="1" placeholder="Message AI Chat…"></textarea>
+      <button class="send-btn" onclick="sendMessage()" title="Send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl    = document.getElementById('userInput');
+  const errorNote  = document.getElementById('errorNote');
+  const welcome    = document.getElementById('welcome');
+  const history    = [];
+
+  // auto-grow textarea
+  inputEl.addEventListener('input', () => {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 160) + 'px';
+  });
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+
+  function sendChip(el) {
+    inputEl.value = el.textContent;
+    sendMessage();
+  }
+
+  function appendMsg(role, content) {
+    if (welcome) welcome.style.display = 'none';
+    const div = document.createElement('div');
+    div.className = `msg ${role}`;
+    const icon = role === 'ai' ? '🤖' : '🧑';
+    div.innerHTML = `
+      <div class="avatar">${icon}</div>
+      <div class="bubble">${formatContent(content)}</div>`;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function formatContent(text) {
+    // code blocks
+    text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (_, lang, code) =>
+      `<pre><code>${escHtml(code.trim())}</code></pre>`);
+    // inline code
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+    // bold
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // newlines
+    text = text.replace(/\n/g, '<br>');
+    return text;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'msg ai';
+    div.id = 'typing';
+    div.innerHTML = `<div class="avatar">🤖</div>
+      <div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+  function removeTyping() {
+    const t = document.getElementById('typing');
+    if (t) t.remove();
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    errorNote.style.display = 'none';
+    inputEl.value = '';
+    inputEl.style.height = 'auto';
+
+    appendMsg('user', text);
+    history.push({ role: 'user', content: text });
+    showTyping();
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: 'You are a helpful AI assistant for SbayRean, a web development learning platform. Be concise, friendly, and use code examples when relevant.',
+          messages: history
+        })
+      });
+      const data = await res.json();
+      const reply = data?.content?.[0]?.text || 'Sorry, I could not generate a response.';
+      removeTyping();
+      appendMsg('ai', reply);
+      history.push({ role: 'assistant', content: reply });
+    } catch (err) {
+      removeTyping();
+      errorNote.style.display = 'block';
+      history.pop();
+    }
+  }
+</script>
+</body>
+</html>

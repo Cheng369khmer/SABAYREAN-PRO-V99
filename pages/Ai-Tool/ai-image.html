@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Image Generator – SbayRean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0c0a14;
+      --surface: #16122a;
+      --panel:   #100e1e;
+      --border:  #2a2040;
+      --accent:  #c084fc;
+      --accent2: #f472b6;
+      --glow:    #c084fc40;
+      --text:    #ede9fe;
+      --muted:   #6b5e8f;
+      --radius:  14px;
+      --font-mono:'Space Mono', monospace;
+      --font-body:'DM Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* bg decoration */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, #3b0764 0%, transparent 60%),
+        radial-gradient(ellipse 50% 35% at 80% 80%, #500724 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body > * { position: relative; z-index: 1; }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(22,18,42,.85);
+      backdrop-filter: blur(12px);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .logo-link { text-decoration: none; }
+    .logo-text  { font-family: var(--font-mono); font-size: 18px; color: var(--accent); letter-spacing: -0.5px; }
+    .header-title { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .header-title span { color: var(--text); font-weight: 500; }
+    .btn-outline {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── Prompt section ── */
+    .prompt-section {
+      background: rgba(22,18,42,.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .style-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .chip {
+      background: rgba(192,132,252,.08);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--text);
+      transition: all .2s;
+    }
+    .chip:hover, .chip.active { border-color: var(--accent); color: var(--accent); background: rgba(192,132,252,.18); }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    #promptInput {
+      flex: 1;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 13px 16px;
+      resize: none;
+      min-height: 80px;
+      outline: none;
+      line-height: 1.6;
+      transition: border-color .2s;
+    }
+    #promptInput::placeholder { color: var(--muted); }
+    #promptInput:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 150px;
+    }
+
+    .size-select {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 12px;
+      outline: none;
+      cursor: pointer;
+    }
+    .size-select option { background: #1a1630; }
+
+    .generate-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: var(--radius);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 12px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity .2s, transform .1s, box-shadow .2s;
+      box-shadow: 0 0 20px rgba(192,132,252,.3);
+    }
+    .generate-btn:hover  { opacity: .88; box-shadow: 0 0 30px rgba(192,132,252,.5); }
+    .generate-btn:active { transform: scale(.96); }
+    .generate-btn:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+
+    /* ── Gallery ── */
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .gallery-header h2 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    /* placeholder slots */
+    .img-slot {
+      aspect-ratio: 1;
+      background: rgba(22,18,42,.6);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color .2s;
+    }
+    .img-slot:hover { border-color: var(--accent); }
+    .img-slot .placeholder-icon { font-size: 36px; opacity: .4; }
+
+    .img-card {
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      animation: fadeIn .5s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: scale(1); } }
+
+    .img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(0,0,0,.8));
+      opacity: 0;
+      transition: opacity .25s;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+      gap: 8px;
+    }
+    .img-card:hover .overlay { opacity: 1; }
+
+    .overlay-btn {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .overlay-btn:hover { background: rgba(255,255,255,.22); }
+
+    /* shimmer loading */
+    .shimmer {
+      background: linear-gradient(90deg, var(--surface) 25%, #211c38 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+    .loading-card {
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid rgba(192,132,252,.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-card {
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      border: 1px solid #7f1d1d;
+      background: rgba(127,29,29,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: #f87171;
+      font-size: 13px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .input-row { flex-direction: column; }
+      .controls { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo-link"><span class="logo-text">SbayRean</span></a>
+  <div class="header-title">🎨 <span>AI Image Generator</span></div>
+  <a href="../ai-tools.html" class="btn-outline">← Back</a>
+</header>
+
+<main>
+
+  <!-- Prompt -->
+  <div class="prompt-section">
+    <span class="section-label">Describe your image</span>
+
+    <div class="style-chips" id="styleChips">
+      <div class="chip" onclick="toggleStyle(this, 'photorealistic')">📷 Photorealistic</div>
+      <div class="chip" onclick="toggleStyle(this, 'digital art')">🖌 Digital Art</div>
+      <div class="chip" onclick="toggleStyle(this, 'anime style')">🎌 Anime</div>
+      <div class="chip" onclick="toggleStyle(this, 'oil painting')">🎨 Oil Painting</div>
+      <div class="chip" onclick="toggleStyle(this, 'cinematic')">🎬 Cinematic</div>
+      <div class="chip" onclick="toggleStyle(this, 'watercolor')">💧 Watercolor</div>
+      <div class="chip" onclick="toggleStyle(this, 'pixel art')">👾 Pixel Art</div>
+    </div>
+
+    <div class="input-row">
+      <textarea id="promptInput" placeholder="A serene mountain lake at sunset, reflections on calm water, dramatic sky, ultra realistic…"></textarea>
+      <div class="controls">
+        <select class="size-select" id="sizeSelect">
+          <option value="512x512">512 × 512</option>
+          <option value="768x512">768 × 512</option>
+          <option value="512x768">512 × 768</option>
+          <option value="1024x768" selected>1024 × 768</option>
+        </select>
+        <button class="generate-btn" id="genBtn" onclick="generateImage()">✨ Generate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div>
+    <div class="gallery-header">
+      <h2>Gallery</h2>
+      <button class="btn-outline" onclick="clearGallery()" style="font-size:12px;">🗑 Clear All</button>
+    </div>
+  </div>
+  <div class="gallery" id="gallery">
+    <div class="img-slot"><div class="placeholder-icon">🖼</div><span>Your images appear here</span></div>
+    <div class="img-slot"><div class="placeholder-icon">✨</div><span>Generate to get started</span></div>
+    <div class="img-slot"><div class="placeholder-icon">🎨</div><span>Multiple styles supported</span></div>
+  </div>
+
+</main>
+
+<script>
+  let activeStyles = [];
+  let hasGenerated = false;
+
+  function toggleStyle(el, style) {
+    if (el.classList.contains('active')) {
+      el.classList.remove('active');
+      activeStyles = activeStyles.filter(s => s !== style);
+    } else {
+      el.classList.add('active');
+      activeStyles.push(style);
+    }
+  }
+
+  async function generateImage() {
+    const prompt  = document.getElementById('promptInput').value.trim();
+    const sizeVal = document.getElementById('sizeSelect').value;
+    const btn     = document.getElementById('genBtn');
+    const gallery = document.getElementById('gallery');
+
+    if (!prompt) {
+      document.getElementById('promptInput').focus();
+      return;
+    }
+
+    // Build full prompt
+    const styleStr = activeStyles.length ? ', ' + activeStyles.join(', ') : '';
+    const fullPrompt = prompt + styleStr;
+    const [w, h] = sizeVal.split('x').map(Number);
+
+    // Clear placeholders on first generate
+    if (!hasGenerated) {
+      gallery.innerHTML = '';
+      hasGenerated = true;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '⏳ Generating…';
+
+    // Insert loading card
+    const loadCard = document.createElement('div');
+    loadCard.className = 'loading-card shimmer';
+    loadCard.innerHTML = `<div class="spinner"></div><span>Creating image…</span>`;
+    gallery.insertBefore(loadCard, gallery.firstChild);
+
+    try {
+      // Use Pollinations.ai — free, no auth required
+      const seed   = Math.floor(Math.random() * 999999);
+      const encPr  = encodeURIComponent(fullPrompt);
+      const imgUrl = `https://image.pollinations.ai/prompt/${encPr}?width=${w}&height=${h}&seed=${seed}&nologo=true`;
+
+      // Preload image
+      await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload  = resolve;
+        img.onerror = reject;
+        img.src     = imgUrl;
+      });
+
+      // Replace loading card with real card
+      const card = document.createElement('div');
+      card.className = 'img-card';
+      card.innerHTML = `
+        <img src="${imgUrl}" alt="${escHtml(prompt)}" loading="lazy" />
+        <div class="overlay">
+          <a class="overlay-btn" href="${imgUrl}" download="sbay-rean-ai.jpg" target="_blank">⬇ Download</a>
+          <button class="overlay-btn" onclick="this.closest('.img-card').remove()">🗑</button>
+        </div>`;
+      gallery.replaceChild(card, loadCard);
+
+    } catch (err) {
+      const errCard = document.createElement('div');
+      errCard.className = 'error-card';
+      errCard.innerHTML = `<span style="font-size:28px">⚠️</span><span>Failed to generate image.<br>Please try again.</span>
+        <button class="overlay-btn" onclick="this.closest('.error-card').remove()" style="margin-top:6px;background:rgba(248,113,113,.15)">Remove</button>`;
+      gallery.replaceChild(errCard, loadCard);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '✨ Generate';
+    }
+  }
+
+  function clearGallery() {
+    const g = document.getElementById('gallery');
+    g.innerHTML = `
+      <div class="img-slot"><div class="placeholder-icon">🖼</div><span>Your images appear here</span></div>
+      <div class="img-slot"><div class="placeholder-icon">✨</div><span>Generate to get started</span></div>
+      <div class="img-slot"><div class="placeholder-icon">🎨</div><span>Multiple styles supported</span></div>`;
+    hasGenerated = false;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  document.getElementById('promptInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.ctrlKey) generateImage();
+  });
+</script>
+</body>
+</html>

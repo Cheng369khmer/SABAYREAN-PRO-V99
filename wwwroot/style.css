@@ -1,0 +1,1178 @@
+/* =========================================
+   0. Base & Reset
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0fbfd 0%, #ffffff 100%);
+    color: #111827;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+
+/* =========================================
+   1. Navbar (Mobile Layout)
+   ========================================= */
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    height: 60px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+/* Avatar Logo */
+.avatar-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* Actions group */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Flag & Toggle */
+.flag-icon { width: 20px; height: 14px; }
+
+/* Custom Switch for Theme */
+.switch { display: inline-block; width: 34px; height: 18px; position: relative; }
+.switch input { display: none; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e2e8f0; border-radius: 34px; transition: .4s; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.slider.round:before { position: absolute; content: ""; height: 14px; width: 14px; left: 2px; bottom: 2px; background-color: white; border-radius: 50%; transition: .4s; }
+input:checked + .slider { background-color: #fca311; }
+input:checked + .slider:before { transform: translateX(16px); }
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 5px;
+    width: 32px;
+    height: 32px;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 22px;
+    height: 2px;
+    background-color: #420b63;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+.bar:nth-child(2) { width: 16px; }
+
+/* When Menu is active, change hamburger to X */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    width: 22px; /* Make it equal width for the X shape */
+}
+
+/* =========================================
+   2. Nav Links Dropdown (Mobile)
+   ========================================= */
+.nav-links {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 12px;
+    transition: left 0.3s ease;
+    border-top: 1px solid #f3f4f6;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    z-index: 999;
+}
+
+/* When Menu is open */
+.nav-links.active {
+    left: 0;
+}
+
+.nav-links a {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #4b5563;
+    transition: 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: #e0fbfd; /* Light Cyan color */
+    color: #1AB8D3; /* Cyan/Blue color */
+}
+
+/* Special Items */
+.tools-dropdown, .login-link, .register-btn {
+    padding: 0 20px;
+    margin-left: auto !important;
+}
+
+.tools-btn {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4b5563;
+    cursor: pointer;
+}
+.down-arrow { font-size: 10px; color: #9ca3af; }
+
+.login-link { text-align: center; color: #4b5563; }
+
+.register-btn {
+    display: block;
+    background-color: #1AB8D3; 
+    color: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 5px;
+}
+
+/* =========================================
+   3. Hero Section
+   ========================================= */
+.hero-container {
+    padding: 40px 20px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.badge {
+    color: #29A8BD;
+    background-color: #e0fbfd;
+    padding: 6px 15px;
+    border-radius: 20px;
+    border: 1px solid #cbedf0;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero-container h1 {
+    font-size: 32px;
+    color: #111827;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #29A8BD; 
+}
+
+.hero-container p {
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-btns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+}
+
+.hero-btns a {
+    display: block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    flex: 1;
+    text-align: center;
+    min-width: 130px;
+}
+
+.btn-solid {
+    background-color: #1AB8D3;
+    color: #ffffff;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+}
+
+/* =========================================
+   4. Stats Section
+   ========================================= */
+.stats-section {
+    padding: 0 16px 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid #e5e7eb;
+    flex: 1;
+    min-width: 120px;
+}
+
+.stat-card h2 {
+    font-size: 28px;
+    color: #1AB8D3;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   5. Desktop Responsive — Sticky Navbar
+   ========================================= */
+
+/* ── Tablet 600px+ ── */
+@media screen and (min-width: 600px) {
+    .nav-header { padding: 0 28px; }
+    .hero-container { padding: 50px 32px 50px; }
+    .hero-container h1 { font-size: 40px; }
+    .hero-btns { max-width: 400px; }
+    .stats-section { padding: 0 28px 60px; gap: 16px; }
+    .stat-card { padding: 22px; }
+}
+
+/* ── Desktop 1024px+ ── */
+@media screen and (min-width: 1024px) {
+    header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        background: #111827 !important;
+        border-bottom: 1px solid rgba(0,230,200,0.15) !important;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.35) !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 50px !important;
+        height: 64px !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+
+    header::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 15%; right: 15%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0,230,200,0.5), transparent);
+        pointer-events: none;
+    }
+
+    .nav-header {
+        display: contents !important;
+    }
+
+    .nav-logo {
+        order: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 200px !important;
+    }
+
+    .nav-links {
+        order: 2 !important;
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        flex: 1 !important;
+        justify-content: center !important; /* Center the navigation menu items */
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border: none !important;
+        gap: 8px !important; /* Set appropriate spacing between menu items */
+        left: 0 !important;
+    }
+
+    .nav-links a {
+        font-size: 14px !important; /* Slightly increase font size for better readability */
+        font-weight: 500 !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        padding: 8px 16px !important; /* Set hover box padding to fit the text nicely */
+        border-radius: 8px !important; /* Add smooth rounded corners */
+        transition: all 0.3s ease !important; /* Smooth transition effect on hover */
+        position: relative;
+        text-decoration: none;
+        background: transparent !important;
+        width: auto !important; /* Prevent the hover box from stretching too wide */
+        flex-shrink: 0 !important;
+    }
+
+    /* Hover state styling */
+    .nav-links a:hover {
+        color: #1AB8D3 !important; /* Match text color with the brand/Register button */
+        background: rgba(26, 184, 211, 0.1) !important; /* Add a subtle glowing background */
+    }
+
+    /* Active state styling */
+    .nav-links a.active {
+        color: #1AB8D3 !important;
+        background: rgba(26, 184, 211, 0.1) !important;
+    }
+
+    /* Active state underline indicator */
+    .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        bottom: 2px; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 16px; 
+        height: 2px;
+        background: #1AB8D3;
+        border-radius: 999px;
+    }
+
+    .nav-actions {
+        order: 3 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 10px !important;
+        width: 200px !important;
+    }
+
+    .hamburger-menu { display: none !important; }
+
+    .login-link {
+        margin: 0 !important;
+        font-size: 13.5px !important;
+        color: rgba(255,255,255,0.5) !important;
+        transition: color 0.2s !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+    .login-link:hover { color: #fff !important; }
+
+    .register-btn {
+        margin: 0 !important;
+        padding: 8px 20px !important;
+        border-radius: 7px !important;
+        background: #1AB8D3 !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        border: none !important;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+        text-align: center !important;
+        margin-top: 0 !important;
+    }
+    .register-btn:hover {
+        background: #13a0b8 !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 18px rgba(26,184,211,0.35) !important;
+    }
+
+    /* Hero */
+    .hero-container {
+        padding: 80px 20px 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .hero-container h1 { font-size: 54px; max-width: 800px; margin: 0 auto 20px; }
+    .hero-container p  { font-size: 18px; max-width: 600px; margin: 0 auto 40px; }
+    .hero-btns { flex-direction: row; justify-content: center; max-width: none; gap: 16px; flex-wrap: nowrap; }
+    .hero-btns a { padding: 13px 32px; font-size: 16px; flex: none; min-width: auto; }
+
+    /* Stats */
+    .stats-section { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 24px; max-width: 900px; margin: 0 auto; padding-bottom: 80px; }
+    .stat-card { flex: 1; padding: 28px 20px; transition: transform 0.3s; }
+    .stat-card:hover { transform: translateY(-5px); }
+}
+
+
+
+/* =========================================
+   6. Dark Mode
+   ========================================= */
+body.dark-theme {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+    color: #052d7cbc;
+}
+
+body.dark-theme .nav-header {
+    background-color: #1f2937;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .nav-links {
+    background-color: #1f2937;
+    border-top-color: #374151;
+}
+
+body.dark-theme .nav-links a {
+    color: #d1d5db;
+}
+
+body.dark-theme .nav-links a:hover, 
+body.dark-theme .nav-links a.active {
+    background-color: #374151; /* Background on mobile */
+    color: #1AB8D3;
+}
+
+body.dark-theme .hero-container h1 {
+    color: #f9fafb;
+}
+
+body.dark-theme .btn-outline {
+    background-color: transparent;
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+/* ដូរពណ៌ Header ឲ្យងងឹតវិញពេល Dark Mode កុំឲ្យថ្លាជាន់អក្សរ */
+body.dark-theme header {
+    background-color: #111827 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+}
+
+body.dark-theme .stat-card {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+body.dark-theme .stat-card h2 {
+    color: #1AB8D3;
+}
+
+body.dark-theme .stat-card p {
+    color: #9ca3af;
+}
+
+/* Change hamburger button color in Dark Mode */
+body.dark-theme .hamburger-menu .bar {
+    background-color: #f9fafb;
+}
+
+/* =========================================
+   7. Desktop — Clean up Dark Mode nav overrides
+   ========================================= */
+@media screen and (min-width: 1024px) {
+    body.dark-theme .nav-links {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* On desktop the navbar is always dark, so reuse the same active/hover styles */
+    body.dark-theme .nav-links a {
+        color: rgba(255,255,255,0.6) !important;
+    }
+    body.dark-theme .nav-links a:hover {
+        color: #ffffff !important;
+        background: rgba(255,255,255,0.08) !important;
+    }
+    body.dark-theme .nav-links a.active {
+        color: #1AB8D3 !important;
+        background: rgba(26,184,211,0.1) !important;
+    }
+}
+
+
+
+/* =========================================
+   ៨. Footer Section (ផ្នែកខាងក្រោមគេហទំព័រ)
+   ========================================= */
+.site-footer {
+    background-color: #1c2633; /* ពណ៌ខៀវប្រផេះងងឹតដូចរូបភាព */
+    color: #e5e7eb;
+    padding: 60px 20px 20px;
+    border-top: 1px solid #1f2937; 
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+/* រចនាសម្រាប់អេក្រង់កុំព្យូទ័រ និង Tablet */
+@media screen and (min-width: 768px) {
+    .footer-container {
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+    
+    .about-col { 
+        max-width: 450px; 
+    }
+    
+    .links-col, .social-col {
+        min-width: 150px;
+    }
+}
+
+/* រចនាផ្នែក name in box footter */
+.footer-col h3 { 
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    
+    /* ១. បង្កើតពណ៌ផ្ទៃ Gradient (ពណ៌ស លាយខៀវ) */
+    background: linear-gradient(90deg, #ffffff, #1AB8D3, #ffffff, #052f59, #ffffff);
+    background-size: 200% auto;
+    
+    /* ២. កាត់ Background ទុកតែលើតួអក្សរ និងលាក់ពណ៌ដើម */
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    
+    /* ៣. ហៅចលនាមកប្រើ (alternate = រត់ទៅវិញទៅមក) */
+    animation: shimmer-back-forth 3s ease-in-out infinite alternate;
+}
+
+/* ៤. បង្កើតចលនា Keyframes សម្រាប់ Footer */
+@keyframes shimmer-back-forth {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 100% center; /* រត់ទៅដល់ចុង ហើយត្រលប់មកវិញ */
+    }
+}
+
+.footer-col h4 {
+    color: #9ca3af; /* ពណ៌ប្រផេះ */
+    font-size: 13px;
+    letter-spacing: 1.5px; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-col p {
+    color: #9ca3af; /* ប្តូរពីខៀវព្រាលៗ ទៅប្រផេះដូចអក្សរធម្មតា */
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ------------------------------------- */
+/* រចនាផ្នែក Quick Links អោយរៀបជាជួរដេកវិញ */
+/* ------------------------------------- */
+.links-col ul {
+    list-style: none; 
+    padding: 0;
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    gap: 25px; 
+}
+
+.links-col ul li {
+    margin-bottom: 0; 
+}
+
+.links-col ul li a {
+    color: #f9fafb; /* ពណ៌ស */
+    text-decoration: none;
+    font-size: 14px; 
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.links-col ul li a:hover {
+    color: #1AB8D3; /* ដូរពណ៌ទៅជាខៀវពេលយក Mouse ដាក់ពីលើ */
+}
+
+/* ------------------------------------- */
+/* រចនា Social Media Icons */
+/* ------------------------------------- */
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 36px; /* បង្រួមទំហំបន្តិច ឲ្យមើលទៅសមសួន */
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    border: none; /* ដកបន្ទាត់ជុំវិញចេញ ដើម្បីឲ្យឃើញពណ៌ Icon ពេញ */
+}
+
+.social-icon:hover {
+    transform: translateY(-4px); 
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: #ffffff; 
+}
+
+/* ពណ៌ផ្ទៃខាងក្រោយរបស់បណ្ដាញសង្គមនីមួយៗ */
+.bg-facebook { background-color: #1877F2; }
+.bg-telegram { background-color: #0088cc; }
+.bg-linkedin { background-color: #0A66C2; }
+.bg-gmail { background-color: #ea4335; }
+.bg-tiktok { background-color: #000000; } /* ដូរទៅពណ៌ខ្មៅដិត សម្រាប់ Tiktok */
+
+/* ------------------------------------- */
+/* ផ្នែក Copyright ខាងក្រោមបង្អស់ */
+/* ------------------------------------- */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid #1f2937; /* បន្ទាត់ផ្ដេកពណ៌ប្រផេះងងឹត ឲ្យស៊ីនឹងផ្ទៃខាងលើ */
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #9ca3af; /* ពណ៌ប្រផេះ មិនអោយលេចពេក */
+    font-size: 13px;
+}
+
+
+/* =========================================
+   ១០. រចនាទំព័រថ្មីៗ (Services, Contact, Login...)
+   ========================================= */
+.page-container {
+    padding: 40px 20px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 40px;
+}
+
+/* រចនាប្រអប់ Form (សម្រាប់ Login, Register, Contact) */
+.form-box {
+    max-width: 450px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.form-control:focus {
+    border-color: #1AB8D3;
+}
+
+/* ប៊ូតុងបញ្ជូន (Submit) */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: #1AB8D3;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover { background: #0f8b9e; }
+
+/* Dark Mode សម្រាប់ទំព័រថ្មី */
+body.dark-theme .page-title { color: #f9fafb; }
+body.dark-theme .form-box { background: #1f2937; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+body.dark-theme .form-group label { color: #d1d5db; }
+body.dark-theme .form-control { background: #374151; border-color: #4b5563; color: #ffffff; }
+
+
+/*=========================================
+   ១១. My Projects (រចនាបថថ្មីតាមរូបភាព)
+  =========================================*/
+.projects-page-container {
+    padding: 40px 20px 60px;
+    max-width: 1050px;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+
+.projects-header {
+    text-align: left; /* ដាក់អក្សរទៅឆ្វេងដូចក្នុងរូប */
+    margin-bottom: 40px;
+}
+
+.projects-header h1 {
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+/* រៀបចំប្រអប់ជា Grid (៣ ក្នុងមួយជួរ) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* លើទូរស័ព្ទរៀប១ជួរ */
+    gap: 35px;
+    padding: 0 20px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* សម្រាប់ Tablet រៀប ២ ជួរ */
+@media screen and (min-width: 768px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+/* សម្រាប់កុំព្យូទ័ររៀប ៣ ជួរ (ទោះមាន ៥ ក៏វាធ្លាក់មកជួរទី២ស្អាត) */
+@media screen and (min-width: 1000px) {
+    .projects-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* រចនាប្រអប់គម្រោងនីមួយៗ */
+.project-card {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.project-img-wrapper {
+    width: 100%;
+    height: 180px; 
+    overflow: hidden;
+    position: relative;
+}
+
+.project-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 20px; 
+    flex-grow: 1; /* ជួយរុញប៊ូតុងចុះក្រោមគេបង្អស់ */
+    display: flex;
+    flex-direction: column;
+}
+
+/* រចនា Tag (ពណ៌បៃតងខ្ចី ដូចក្នុងរូប) */
+.project-tag {
+    display: inline-block;
+    color: #059669; /* អក្សរពណ៌បៃតងចាស់ */
+    background: #d1fae5; /* ផ្ទៃពណ៌បៃតងខ្ចី */
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px; 
+    font-weight: bold;
+    margin-bottom: 12px;
+    align-self: flex-start; 
+}
+
+.project-card h3 {
+    color: #1f2937;
+    font-size: 20px; 
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    color: #6b7280;
+    font-size: 14px; 
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1; /* រុញប៊ូតុងចុះក្រោម */
+}
+
+/* រចនាប៊ូតុងពណ៌ខៀវលាតពេញខាងក្រោម */
+.project-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #3b82f6; /* ពណ៌ខៀវ */
+    color: #ffffff !important;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    margin-top: auto;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    gap: 8px;
+}
+
+.project-btn:hover {
+    background-color: #2563eb; /* ពេល Hover ដូរពណ៌ខៀវដិតបន្តិច */
+}
+
+/* ================= Dark Mode សម្រាប់ Projects ================= */
+body.dark-theme .projects-header h1 { color: #f9fafb; }
+body.dark-theme .project-card { 
+    background: #1f2937; 
+    border-color: #374151;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+body.dark-theme .project-card h3 { color: #f9fafb; }
+body.dark-theme .project-card p { color: #9ca3af; }
+body.dark-theme .project-tag { background: #064e3b; color: #34d399; }
+body.dark-theme .project-btn { background-color: #3b82f6; color: #ffffff !important; }
+body.dark-theme .project-btn:hover { background-color: #2563eb; }
+
+/*==== name Projects Page (រចនាបែបថ្មីតាមរូបភាព) ====*/
+.page-title {
+    align-items: center;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: left !important; /* ថែម !important បើវានៅតែមិនព្រមទៅឆ្វេង */
+}
+
+
+/* MY Projects For txt ===  */
+.projects_title {
+    font-size: 28px;
+    color: #0b84cf; /* ដូរទៅពណ៌ស ព្រោះ UI អ្នកពណ៌ងងឹត */
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-align: center; /* ប្រើ center ដើម្បីរុញអក្សរមកកណ្ដាល */
+}
+
+
+/* --- ==============  My Services Section ===================--- */
+
+.services-section {
+    padding: 4rem 2rem;
+}
+
+/* Matching your centered project title */
+.services_title {
+    font-size: 28px;
+     color: #0b84cf; /* White text for dark background */
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Responsive Grid for the cards */
+.services-grid {
+    display: grid;
+    /* Automatically creates columns based on screen size */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the grid */
+}
+
+/* Service Card Styling */
+.service-card {
+    background-color: #1e293b; /* Dark blue/gray matching your theme */
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #334155;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect so the card lifts up slightly */
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-card p {
+    color: #9ca3af; /* Light gray text for easy reading */
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* --- ==============  My Courses Section ===================--- */
+
+.courses-section {
+    padding: 4rem 2rem;
+}
+
+.courses_title {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Course Card Styling */
+.course-card {
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #334155;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* This helps push the button to the bottom */
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.course-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.course-card h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.course-card p {
+    color: #9ca3af;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Ensures buttons align at the bottom even if text length varies */
+}
+
+/* Enroll Button Styling */
+.course-btn {
+    display: inline-block;
+    background-color: #3b82f6; /* Modern Blue */
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.course-btn:hover {
+    background-color: #2563eb; /* Slightly darker blue on hover */
+}
+
+
+
+/* =========================================
+       Dropdown Menu Styles for Tool-AI (Desktop)
+       ========================================= */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* ប្រអប់ Menu ខាងក្រោម (លាក់ជាស្រេច) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #111827; /* ពណ៌ស៊ីគ្នាជាមួយ Header */
+        min-width: 160px;
+        box-shadow: 0px 8px 24px rgba(0,0,0,0.4); /* ស្រមោល */
+        border: 1px solid rgba(0, 230, 200, 0.15); /* បន្ទាត់ជុំវិញ */
+        border-radius: 8px;
+        z-index: 1000;
+        top: 100%; /* ទម្លាក់វាមកក្រោមអក្សរ Tool-AI */
+        left: 50%;
+        transform: translateX(-50%); /* រុញវាឲ្យចំកណ្តាលពាក្យ Tool-AI */
+        padding: 8px 0;
+        margin-top: 10px; /* គម្លាតពី Header បន្តិច */
+    }
+
+    /* បង្ហាញ Menu ពេលយក Mouse ទៅដាក់ពីលើ (Hover) */
+    .dropdown:hover .dropdown-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* រចនាអក្សរខាងក្នុង Dropdown */
+    .dropdown-content a {
+        color: rgba(255, 255, 255, 0.7) !important;
+        padding: 10px 20px !important;
+        text-align: left !important;
+        width: 100% !important; /* ឲ្យប្រអប់ Hover លាតពេញ */
+        border-radius: 0 !important; /* លុបកែងមូលចេញទើបស្អាត */
+        font-size: 13.5px !important;
+    }
+
+    /* ពេល Hover លើ Menu ខាងក្នុង Dropdown */
+    .dropdown-content a:hover {
+        background-color: rgba(26, 184, 211, 0.1) !important;
+        color: #1AB8D3 !important;
+    }
+
+    /* បង្កើតស្ពានតភ្ជាប់ (Invisible Bridge Courses and Tool-AI ) កុំឲ្យដាច់ពេលអូស Mouse ចុះក្រោម */
+    .dropdown-content::before {
+        content: "";
+        position: absolute;
+        top: -10px; /* គ្របដណ្តប់គម្លាតរបស់ margin-top */
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: transparent; /* ពណ៌ថ្លា មើលមិនឃើញទេ តែ Mouse អាចដើរលើវាបាន */
+    }
+
+    /*==== Name logo Website for Text ======= */
+    .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* គម្លាតរវាងរូប Logo និងអក្សរ */
+    text-decoration: none; /* បំបាត់បន្ទាត់ពីក្រោមអក្សរ (បើមាន) */
+}
+
+.logo-text {
+    font-size: 22px; 
+    font-weight: 700; 
+    letter-spacing: 0.5px;
+    
+    /* 1. បង្កើតពណ៌ Gradient (ពណ៌ស លាយខៀវ #1AB8D3 របស់ Website អ្នក) */
+    background: linear-gradient(90deg, #ffffff, #1AB8D3, #ffffff, #1AB8D3, #ffffff);
+    background-size: 200% auto; /* ពង្រីកទំហំ Background ឲ្យធំជាងអក្សរ ដើម្បីអាចរំកិលបាន */
+    
+    /* 2. កាត់ Background ឲ្យចេញជារាងអក្សរ និងលាក់ពណ៌ដើម */
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    
+    /* 3. ហៅចលនា (Animation) ឈ្មោះ shimmer មកដំណើរការ */
+    animation: shimmer 3s linear infinite; 
+}
+
+/* 4. បង្កើតចលនា (Keyframes) សម្រាប់រំកិល Background បង្កើតជាភ្លើងរត់ */
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}

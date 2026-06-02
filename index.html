@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SbayRean - Learn web development with clear guidance and real projects.">
+
+    <title>SbayRean - សប្បាយរៀន</title>
+    <link rel="icon" type="image/png" href="./img/logoweb.png">
+    <link rel="stylesheet" href="wwwroot/style.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-header">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="./img/logoweb.png" alt="SbayRean Logo" class="avatar-icon">
+                    <span class="logo-text">SbayRean</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="login.html" class="login-link" data-i18n="login">Login</a>
+                <a href="register.html" class="register-btn" data-i18n="register">Register</a>
+
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round">☀️</span>
+                </label>
+
+                <img src="uk-flag.png" alt="English" class="flag-icon" id="lang-toggle"
+                    style="cursor: pointer; width: 24px;">
+
+                <button class="hamburger-menu" id="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <nav class="nav-links" id="nav-content">
+            <a href="index.html" class="active" data-i18n="home">Home</a>
+            <a href="pages/projects.html" data-i18n="projects">Projects</a>
+            <a href="pages/services.html" data-i18n="services">Services</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn" data-i18n="courses">Courses <span style="font-size: 10px;">▼</span></a>
+
+                <div class="dropdown-content">
+                    <a href="pages/Courses-Tools/linux-admin.html">Linux Admin</a>
+                    <a href="pages/Courses-Tools/data-science.html">Data Science</a>
+                    <a href="pages/Courses-Tools/clu-tools.html">CLU Tools</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+
+                <a href="pages/ai-tools.html" class="dropbtn" data-i18n="tool_ai">Tool-AI <span
+                        style="font-size: 10px;">▼</span></a>
+
+                <div class="dropdown-content">
+                    <a href="pages/Ai-Tool/ai-chat.html">AI Chat</a>
+                    <a href="pages/Ai-Tool/ai-image.html">AI Image</a>
+                    <a href="pages/Ai-Tool/ai-code.html">AI Code</a>
+                </div>
+            </div>
+
+            <a href="pages/about.html" data-i18n="about">About</a>
+            <a href="pages/contact.html" data-i18n="contact">Contact</a>
+            <a href="pages/privacy.html" data-i18n="privacy">Privacy</a>
+
+
+        </nav>
+    </header>
+
+
+
+    <main class="hero-container">
+        <span class="badge" data-i18n="badge">Web Developer · Freelancer · Online Teaching</span>
+        <h1>
+            <span data-i18n="h1_start">Learn to build</span>
+            <span class="highlight" data-i18n="h1_highlight">real-world websites</span>
+            <span data-i18n="h1_end">with clear guidance.</span>
+        </h1>
+        <p data-i18n="hero_desc">Master modern web development step by step with practical lessons, real projects, and
+            clear explanations in every module.</p>
+        <div class="hero-btns">
+            <a href="courses.html" class="btn-solid" data-i18n="btn_browse">Browse Courses</a>
+            <a href="projects.html" class="btn-outline" data-i18n="btn_projects">View Projects</a>
+        </div>
+    </main>
+
+    <section class="stats-section">
+        <div class="stat-card">
+            <h2>20+</h2>
+            <p data-i18n="stat_students">Students taught</p>
+        </div>
+        <div class="stat-card">
+            <h2>3+</h2>
+            <p data-i18n="stat_courses">Courses available</p>
+        </div>
+        <div class="stat-card">
+            <h2>2+</h2>
+            <p data-i18n="stat_years">Years of teaching experience</p>
+        </div>
+    </section>
+
+
+    <!---=== MY Projects ===  -->
+
+    <h2 class="projects_title" data-i18n="projects_title">My Projects</h2>
+
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <div class="project-img-wrapper">
+                <img src="https://via.placeholder.com/400x250/1f2937/ffffff?text=E-Commerce+App" alt="Project 1">
+            </div>
+            <div class="project-content">
+                <span class="project-tag">Nuxt.js / Laravel</span>
+                <h3 data-i18n="p1_title">E-Commerce Platform</h3>
+                <p data-i18n="p1_desc">A full-stack e-commerce website with payment integration, user dashboard, and
+                    admin panel.</p>
+                <a href="#" class="project-btn">👉 <span data-i18n="btn_view_project">View Project</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img-wrapper">
+                <img src="https://via.placeholder.com/400x250/1AB8D3/ffffff?text=School+System" alt="Project 2">
+            </div>
+            <div class="project-content">
+                <span class="project-tag">Vue.js / Tailwind</span>
+                <h3 data-i18n="p2_title">School Management System</h3>
+                <p data-i18n="p2_desc">A complete system for managing students, courses, attendance, and grading.</p>
+                <a href="#" class="project-btn">👉 <span data-i18n="btn_view_project">View Project</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img-wrapper">
+                <img src="https://via.placeholder.com/400x250/fca311/ffffff?text=Portfolio" alt="Project 3">
+            </div>
+            <div class="project-content">
+                <span class="project-tag">HTML / CSS / JS</span>
+                <h3 data-i18n="p3_title">Personal Portfolio Website</h3>
+                <p data-i18n="p3_desc">A fully responsive personal portfolio designed to showcase skills and previous
+                    work.</p>
+                <a href="#" class="project-btn">👉 <span data-i18n="btn_view_project">View Project</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img-wrapper">
+                <img src="https://via.placeholder.com/400x250/420b63/ffffff?text=Social+App" alt="Project 4">
+            </div>
+            <div class="project-content">
+                <span class="project-tag">React / Node.js</span>
+                <h3 data-i18n="p4_title">Social Media App</h3>
+                <p data-i18n="p4_desc">A platform to connect with friends, share posts, and chat in real-time.</p>
+                <a href="#" class="project-btn">👉 <span data-i18n="btn_view_project">View Project</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img-wrapper">
+                <img src="https://via.placeholder.com/400x250/29A8BD/ffffff?text=Blog+Site" alt="Project 5">
+            </div>
+            <div class="project-content">
+                <span class="project-tag">Next.js / MongoDB</span>
+                <h3 data-i18n="p5_title">Blogging Platform</h3>
+                <p data-i18n="p5_desc">A fast and SEO-friendly blogging platform with markdown support and commenting
+                    system.</p>
+                <a href="#" class="project-btn">👉 <span data-i18n="btn_view_project">View Project</span></a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!---=== MY SERVICES ===  -->
+
+    <section class="services-section" id="services">
+        <h2 class="services_title" data-i18n="services_title">My Services</h2>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3 data-i18n="s1_title">Web Development</h3>
+                <p data-i18n="s1_desc">Building fast, responsive, and fully functional websites using modern
+                    technologies like React, Vue, and Laravel.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3 data-i18n="s2_title">UI/UX Design</h3>
+                <p data-i18n="s2_desc">Creating beautiful, user-friendly interfaces that provide an engaging and
+                    seamless digital experience for your users.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 data-i18n="s3_title">SEO & Optimization</h3>
+                <p data-i18n="s3_desc">Improving website speed, performance, and search engine rankings to help your
+                    business reach more people.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 data-i18n="s3_title">Design Flows </h3>
+                <p data-i18n="s3_desc">Improving website speed, performance, and search engine rankings to help your
+                    business reach more people.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 data-i18n="s3_title">Design Flows </h3>
+                <p data-i18n="s3_desc">Improving website speed, performance, and search engine rankings to help your
+                    business reach more people.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 data-i18n="s3_title">Design Flows </h3>
+                <p data-i18n="s3_desc">Improving website speed, performance, and search engine rankings to help your
+                    business reach more people.</p>
+            </div>
+    </section>
+
+    <!---=== MY COURSES ===  -->
+
+    <section class="courses-section" id="courses">
+        <h2 class="courses_title" data-i18n="courses_title">My Courses</h2>
+
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-icon">📚</div>
+                <h3 data-i18n="c1_title">HTML & CSS Fundamentals</h3>
+                <p data-i18n="c1_desc">Learn the absolute building blocks of the web. Perfect for beginners starting
+                    their web development journey.</p>
+                <a href="#" class="course-btn" data-i18n="btn_enroll">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">⚡</div>
+                <h3 data-i18n="c2_title">JavaScript Mastery</h3>
+                <p data-i18n="c2_desc">Master core JavaScript concepts, DOM manipulation, and modern ES6+ features to
+                    build interactive websites.</p>
+                <a href="#" class="course-btn" data-i18n="btn_enroll">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🛠️</div>
+                <h3 data-i18n="c3_title">Full-Stack Bootcamp</h3>
+                <p data-i18n="c3_desc">Go from front-end to back-end. Build real-world applications using modern
+                    frameworks like Vue and Laravel.</p>
+                <a href="#" class="course-btn" data-i18n="btn_enroll">Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col about-col">
+                <h3 data-i18n="footer_name">SOKHM THANCHENG</h3>
+                <p data-i18n="footer_desc">Year 4 student majoring in Computer Science and Networking at <br>Chenla
+                    University.</p>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4 data-i18n="footer_quick_links">QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n="footer_link_home">Home</a></li>
+
+                    <li><a href="about.html" data-i18n="footer_link_about">About Me</a></li>
+
+                    <li><a href="courses.html" data-i18n="footer_link_courses">Courses</a></li>
+
+                    <li><a href="projects.html " data-i18n="footer_link_projects">Projects</a></li>
+
+                    <li><a href="services.html " data-i18n="footer_link_services">Services</a></li>
+
+                    <li><a href="privacy.html " data-i18n="footer_link_privacy">Privacy</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col social-col">
+                <h4 data-i18n="footer_follow">FOLLOW ME</h4>
+                <div class="social-icons">
+
+                    <a href="https://www.facebook.com/sokhomthangcheng" target="_blank" class="social-icon bg-facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://t.me/yourusername" target="_blank" class="social-icon bg-telegram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/yourusername" target="_blank" class="social-icon bg-linkedin">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.16-3.8c-1.1 0-1.8.6-2.1 1.2v-1h-2.2v9.1h2.2v-4.9c0-1.3.2-2.5 1.7-2.5 1.5 0 1.5 1.4 1.5 2.6v4.8h2.2zM6.5 8.7c.8 0 1.4-.6 1.4-1.4 0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4 0 .8.6 1.4 1.4 1.4zm1.1 9.8V9.4H5.4v9.1h2.2z" />
+                        </svg>
+                    </a>
+
+                    <a href="mailto:your.email@gmail.com" class="social-icon bg-gmail">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="social-icon bg-tiktok">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.5-.39 3.02-1.22 4.29-1.31 2-3.59 3.25-6.04 3.25-2.61 0-5.1-1.39-6.38-3.66-1.15-2.04-1.22-4.59-.1-6.72 1.05-1.99 3-3.32 5.18-3.65 1.13-.17 2.29-.12 3.39.23v4.06c-.4-.14-.82-.2-1.24-.22-1.32-.05-2.6.5-3.35 1.51-.76 1.02-1.02 2.38-.63 3.59.39 1.2 1.34 2.16 2.53 2.58 1.41.48 3.03.22 4.19-.66 1.18-.89 1.83-2.32 1.83-3.83V0h3.2z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026​ Sokhom Thangcheng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="wwwroot/script.js"></script>
+</body>
+
+</html>

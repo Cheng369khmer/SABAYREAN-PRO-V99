@@ -1,0 +1,12 @@
+css ==> Cascading Style sheet
+Css មានបីប្រភេទ
+
+1. inline Style
+2.Internal Style
+3.External Style
+
+ <h2 class="lesson-title">Lession 2: មេរៀនទី ២</h2>
+ ហៅទៅប្រនៅ Css
+            1 .h2
+            2 .class
+            3 .lesson-title
