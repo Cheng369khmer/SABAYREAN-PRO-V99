@@ -122,3 +122,75 @@ if (langToggle) {
     applyLanguage(currentLang);
   });
 }
+
+
+// --- 3. Language About (EN / KM) ---
+"purpose_title"; "Purpose of Creating This Website",
+    "purpose_desc"; "This website was created to provide coding learning opportunities and help build an understanding of various programming languages in Khmer.",
+    "purpose_card1_title"; "Coding Skill Development",
+    "purpose_card1_desc"; "We created this website to help you learn programming and provide knowledge and skills in useful coding languages.",
+    "purpose_card2_title"; "Building a Learning Community",
+    "purpose_card2_desc"; "We want to build a community for learners to share experiences and technologies in web development.",
+    "purpose_card3_title"; "Elevating Skill Levels",
+    "purpose_card3_desc"; "This website also aims to elevate your skill levels by providing opportunities to learn from practical projects and modern pedagogy."
+
+"purpose_title"; "គោលបំណងនៃការបង្កើតវេបសាយនេះ",
+    "purpose_desc"; "វេបសាយនេះត្រូវបានបង្កើតឡើងដើម្បីផ្តល់ឱកាសសម្រាប់ការរៀនកូដ និងជួយបង្កើតការយល់ដឹងពីភាសាកូដនានាជាភាសាខ្មែរ។",
+    "purpose_card1_title"; "ការអភិវឌ្ឍជំនាញកូដ",
+    "purpose_card1_desc"; "យើងបង្កើតវេបសាយនេះដើម្បីជួយអ្នករៀនបង្កើតកម្មវិធីនិងផ្តល់នូវការយល់ដឹងនិងជំនាញជាមួយភាសាកូដដែលមានប្រយោជន៍។",
+    "purpose_card2_title"; "ការបង្កើតសហគមន៍អ្នកសិក្សា",
+    "purpose_card2_desc"; "យើងចង់បង្កើតសហគមន៍មួយសម្រាប់អ្នកសិក្សាដែលអាចចែករំលែកបទពិសោធន៍និងបច្ចេកវិទ្យាក្នុងការអភិវឌ្ឍវេបសាយ។",
+    "purpose_card3_title"; "ការលើកស្ទួយកម្រិតជំនាញ",
+    "purpose_card3_desc"; "វេបសាយនេះក៏មានគោលបំណងលើកស្ទួយកម្រិតជំនាញរបស់អ្នកដោយផ្តល់ឱកាសរៀនពីគម្រោងជាក់ស្តែងនិងគរុកោសល្យថ្មីៗ។"
+
+
+// --- Dashborad For User Interface ---
+
+// កូដសម្រាប់ចាប់យកព្រឹត្តិការណ៍ពេលចុចប៊ូតុង Login
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // ទប់មិនឱ្យទំព័រ Refresh
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // ឧទាហរណ៍ទិន្នន័យត្រាប់ (Mock Data) ដែលបានមកពី Database (Backend)
+    const mockDatabase = {
+        "user@gmail.com": { role: "user", name: "Sokhom" },
+        "admin@gmail.com": { role: "admin", name: "Admin Manager" },
+        "superadmin@gmail.com": { role: "superadmin", name: "Super Admin" }
+    };
+
+    // ត្រួតពិនិត្យគណនី
+    if (mockDatabase[email]) {
+        const userRole = mockDatabase[email].role;
+
+        // រក្សាទុកទិន្នន័យក្នុង LocalStorage សម្រាប់ការប្រើប្រាស់បន្ត
+        localStorage.setItem('currentUser', JSON.stringify(mockDatabase[email]));
+
+        // បញ្ជូនទំព័រទៅតាមកម្រិតសិទ្ធិ (Role)
+        if (userRole === 'user') {
+            window.location.href = 'dashboard.html'; // ទៅកាន់ទំព័រសិស្ស
+        } else if (userRole === 'admin') {
+            window.location.href = '../admin/manage-users.html'; // ទៅកាន់ទំព័រ Admin
+        } else if (userRole === 'superadmin') {
+            window.location.href = '../superadmin/dashboard.html'; // ទៅកាន់ទំព័រ Super Admin
+        }
+    } else {
+        alert("អ៊ីមែល ឬលេខសម្ងាត់មិនត្រឹមត្រូវទេ!");
+    }
+});
+
+
+//--- Rigister ----
+
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // កន្លែងនេះបងអាចបន្ថែម Logic បញ្ជូនទិន្នន័យទៅ Backend (API)
+    // ...
+    
+    alert("ចុះឈ្មោះទទួលបានជោគជ័យ! សូមចូលគណនី (Login)។");
+    
+    // បញ្ជូនទៅកាន់ទំព័រ Login វិញ
+    window.location.href = 'login.html'; 
+});
