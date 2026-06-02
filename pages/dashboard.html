@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SbayRean</title>
+    <!-- ភ្ជាប់ CSS ពី Folder wwwroot -->
+    <link rel="stylesheet" href="../wwwroot/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body style="background-color: #0f1117; font-family: 'DM Sans', sans-serif; margin: 0; padding: 0;">
+
+    <!-- ភ្ជាប់ Header របស់បងនៅទីនេះ (Copy ពី File ចាស់មកដាក់) -->
+
+    <!-- USER DASHBOARD SECTION -->
+    <main class="dashboard-main-wrapper">
+        <div class="dashboard-container">
+            
+            <!-- Banner ស្វាគមន៍ (Welcome Banner) -->
+            <div class="dashboard-welcome-banner">
+                <div class="welcome-left">
+                    <div class="user-avatar-box">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <div class="welcome-text">
+                        <span class="user-badge-role">សិស្ស</span>
+                        <h1>សូមស្វាគមន៍មកកាន់, <span class="username-highlight">sokhomthangcheng!</span></h1>
+                        <p>បន្តដំណើរការសរសេរកូដកម្មវិធីរបស់អ្នក</p>
+                    </div>
+                </div>
+                <div class="welcome-right">
+                    <div class="date-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/></svg>
+                        <span>June 2, 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ស្ថិតិ ៣ ប្រអប់ (Stats Grid) -->
+            <div class="dashboard-stats-grid">
+                <!-- កាតទី១ -->
+                <div class="dash-stat-card">
+                    <div class="stat-card-left">
+                        <span class="stat-label">វគ្គសិក្សាសរុប</span>
+                        <span class="stat-number">13</span>
+                        <p class="stat-subtext">វគ្គសិក្សាវីដេអូដែលមាន</p>
+                    </div>
+                    <div class="stat-icon-box box-cyan">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zm-5-6l-7 4V7l7 4z"/></svg>
+                    </div>
+                </div>
+
+                <!-- កាតទី២ -->
+                <div class="dash-stat-card">
+                    <div class="stat-card-left">
+                        <span class="stat-label">វគ្គសិក្សាដែលកំពុងរៀន</span>
+                        <span class="stat-number">0</span>
+                        <p class="stat-subtext">វគ្គសិក្សាដែលអ្នកកំពុងរៀន</p>
+                    </div>
+                    <div class="stat-icon-box box-blue">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                </div>
+
+                <!-- កាតទី៣ -->
+                <div class="dash-stat-card">
+                    <div class="stat-card-left">
+                        <span class="stat-label">ការទូទាត់សរុប</span>
+                        <span class="stat-number">0</span>
+                        <p class="stat-subtext">វគ្គសិក្សាបង្កាច់ប្រាក់ដែលបានទិញ</p>
+                    </div>
+                    <div class="stat-icon-box box-emerald">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 13h-2v-1c-1.1 0-2-.9-2-2h2c0 .55.45 1 1 1h2c-.55 0-1-.45-1-1v-2H9v-2h2v-1c0-1.66 1.34-3 3-3h2c.55 0 1 .45 1 1s-.45 1-1 1h-2c-.55 0-1 .45-1 1v2h2v2h-2v1c0 .55-.45 1-1 1z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar Section -->
+            <div class="dashboard-progress-section">
+                <div class="progress-header">
+                    <h2>វឌ្ឍនភាពសិក្សារបស់អ្នក</h2>
+                    <span class="progress-percent">0%</span>
+                </div>
+                <p>បានចុះឈ្មោះក្នុង <strong>0</strong> ក្នុងចំណោម <strong>13</strong> វគ្គសិក្សា</p>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ភ្ជាប់ Footer របស់បងនៅទីនេះ -->
+</body>
+</html>

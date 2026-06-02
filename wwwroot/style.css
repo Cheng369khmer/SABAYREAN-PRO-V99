@@ -543,7 +543,7 @@ body.dark-theme .hamburger-menu .bar {
    ៨. Footer Section (ផ្នែកខាងក្រោមគេហទំព័រ)
    ========================================= */
 .site-footer {
-    background-color: #1c2633; /* ពណ៌ខៀវប្រផេះងងឹតដូចរូបភាព */
+    background-color:  #111827; /* ពណ៌ខៀវប្រផេះងងឹតដូចរូបភាព */
     color: #e5e7eb;
     padding: 60px 20px 20px;
     border-top: 1px solid #1f2937; 
@@ -1174,5 +1174,1193 @@ body.dark-theme .project-btn:hover { background-color: #2563eb; }
     }
     100% {
         background-position: 200% center;
+    }
+}
+
+
+
+/* =========================================
+   ប្រកាសពណ៌គោល (Root Variables)
+========================================= */
+:root {
+    --bg-dark-navy: #111827; /* ពណ៌ដែលទាញចេញពីរូបភាពរបស់បង */
+}
+
+/* =========================================
+   Services Main Wrapper 
+========================================= */
+.services-main-wrapper {
+    position: relative;
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-dark-navy); /* ប្រើពណ៌ពី :root ខាងលើ */
+}
+
+/* =========================================
+   Container & Header
+========================================= */
+.services-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    color: #ff8a5c;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.section-header h1 {
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 700;
+}
+
+/* =========================================
+   CSS Grid សម្រាប់កាត
+========================================= */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* =========================================
+   Card Style (Dark Theme + Centered Text)
+========================================= */
+.service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 45px 30px;
+    transition: all 0.4s ease;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 138, 92, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   Icons 
+========================================= */
+.icon-wrapper {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #ff8a5c 0%, #ff6b35 100%);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .icon-wrapper {
+    transform: scale(1.08) rotate(5deg);
+}
+
+.icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+/* =========================================
+   Text & Paragraph Formatting
+========================================= */
+.service-card h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.service-card p {
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 280px;
+}
+
+/* =========================================
+   ប៊ូតុង Learn More
+========================================= */
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    color: #ff8a5c;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto; 
+}
+
+.learn-more-btn svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    fill: #ff8a5c;
+    transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    color: #ffffff;
+}
+
+.learn-more-btn:hover svg {
+    fill: #ffffff;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   Responsive Design
+========================================= */
+@media (max-width: 768px) {
+    .services-main-wrapper {
+        padding: 50px 20px;
+    }
+    .section-header h1 {
+        font-size: 32px;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+ 
+/* =========================================
+   Courses Main Wrapper 
+========================================= */
+.courses-main-wrapper {
+    position: relative;
+    padding: 80px 20px;
+    
+    /* ប្រើពណ៌ Background ងងឹតដូច About Section (អត់មានក្រឡា) */
+    background-color: var(--bg-dark-navy, #12151e); 
+    
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* =========================================
+   Container & Header
+========================================= */
+.courses-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.courses-main-wrapper .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.courses-main-wrapper .section-header h2 {
+    color: #ff8a5c;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.courses-main-wrapper .section-header h1 {
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 700;
+}
+
+/* =========================================
+   Course Filters
+========================================= */
+.course-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #ff8a5c 0%, #ff6b35 100%);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+/* =========================================
+   Courses Grid 
+========================================= */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* =========================================
+   Course Card Style
+========================================= */
+.course-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 138, 92, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   Course Image / Icon Area
+========================================= */
+.course-image {
+    position: relative;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.course-icon-bg {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-icon-bg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Badges */
+.course-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(74, 222, 128, 0.2); /* ពណ៌បៃតងស្រាល */
+    color: #4ade80;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.course-badge.intermediate {
+    background: rgba(250, 204, 21, 0.2); /* ពណ៌លឿងស្រាល */
+    color: #facc15;
+}
+
+.course-badge.advanced {
+    background: rgba(248, 113, 113, 0.2); /* ពណ៌ក្រហមស្រាល */
+    color: #f87171;
+}
+
+/* =========================================
+   Course Content Area
+========================================= */
+.course-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.course-content h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.course-content p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* រុញ Footer ទៅខាងក្រោមជានិច្ច */
+}
+
+/* =========================================
+   Course Footer (Price & Button)
+========================================= */
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.course-price {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.enroll-btn {
+    background: rgba(255, 138, 92, 0.1);
+    color: #ff8a5c;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 138, 92, 0.3);
+}
+
+.enroll-btn:hover {
+    background: #ff8a5c;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 138, 92, 0.4);
+}
+
+/* =========================================
+   Responsive Design
+========================================= */
+@media (max-width: 768px) {
+    .courses-main-wrapper {
+        padding: 50px 20px;
+    }
+    .courses-main-wrapper .section-header h1 {
+        font-size: 30px;
+    }
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* =========================================
+   About Main Wrapper
+========================================= */
+.about-main-wrapper {
+    position: relative;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-dark-navy, #12151e); /* Uses root variable if defined, else fallback */
+    min-height: 80vh;
+}
+
+/* =========================================
+   Container & Layout
+========================================= */
+.about-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   About Text Section
+========================================= */
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-subtitle {
+    color: #ff8a5c;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.about-title {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.about-description {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   Stats Section
+========================================= */
+.about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    color: #ff8a5c;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   About Image Section
+========================================= */
+.about-image-wrapper {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+    object-fit: cover;
+}
+
+/* Decorative box behind the image */
+.image-accent-box {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    border: 2px solid #ff8a5c;
+    border-radius: 20px;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+/* =========================================
+   Responsive Design
+========================================= */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .about-text {
+        text-align: center;
+    }
+    
+    .about-stats {
+        justify-content: center;
+    }
+
+    .image-accent-box {
+        right: auto;
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-main-wrapper {
+        padding: 60px 20px;
+    }
+
+    .about-title {
+        font-size: 32px;
+    }
+    
+    .about-stats {
+        gap: 20px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+}
+
+
+/* =========================================
+   Purpose Section (Dark Theme Match គោលបំណងនៃការបង្កើតវេបសាយ)
+========================================= */
+.purpose-section {
+    position: relative;
+    padding: 80px 20px 100px;
+    background-color: var(--bg-dark-navy, #12151e); /* ពណ៌ស៊ីនឹង Background បង */
+    display: flex;
+    justify-content: center;
+}
+
+.purpose-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Header Text */
+.purpose-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.purpose-header h2 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.purpose-header p {
+    color: #94a3b8; /* ពណ៌ប្រផេះដូចក្នុង Theme បង */
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Grid Layout */
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Card Style */
+.purpose-card {
+    background: rgba(255, 255, 255, 0.03); /* ផ្ទៃកាតងងឹតថ្លា */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.purpose-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* បន្ទាត់ពណ៌លើកាត (Top Line Accent) */
+.card-top-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+}
+
+.line-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.line-purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.line-indigo { background: linear-gradient(90deg, #6366f1, #818cf8); }
+
+/* Icons Box */
+.purpose-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.purpose-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* ពណ៌ Icon នីមួយៗឱ្យត្រូវនឹងបន្ទាត់ខាងលើ */
+.icon-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.icon-purple { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+.icon-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+
+/* Text within Card */
+.purpose-card h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.purpose-card p {
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .purpose-header h2 {
+        font-size: 28px;
+    }
+    .purpose-section {
+        padding: 60px 20px;
+    }
+}
+
+
+
+
+
+/* =========================================
+   Leader / Founder Section (Dark Theme Match)
+========================================= */
+/* ទាញយក Font ខ្មែរបែបសម័យថ្មី ទាន់សម័យសម្រាប់វិស័យ Tech */
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap');
+
+/* =========================================
+   Premium Leader Section Styles
+========================================= */
+.premium-leader-section {
+    position: relative;
+    padding: 100px 20px;
+    background-color: var(--bg-dark-navy, #12151e);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Kantumruy Pro', 'DM Sans', sans-serif;
+}
+
+.leader-container {
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+/* ពន្លឺ Ambient Glow សាយភាយនៅខាងក្រោយកាត */
+.bg-ambient-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,138,92,0.15) 0%, rgba(139,92,246,0.05) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Header Formatting */
+.leader-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.leader-header h2 {
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.leader-header p {
+    color: #94a3b8;
+    font-size: 16px;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* ===== Ultra-Premium Card Layout ===== */
+.premium-leader-card {
+    background: rgba(30, 41, 59, 0.3); /* ផ្ទៃកាតថ្លាងងឹត */
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 50px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-leader-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 138, 92, 0.2);
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(255, 138, 92, 0.05);
+}
+
+/* Image Zone with High-Tech Glow Ring */
+.leader-image-zone {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.image-wrapper-circle {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #1e293b;
+    z-index: 2;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.image-wrapper-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ចលនាពន្លឺរង្វង់សាយភាយ (Pulse Ring) */
+.profile-glow-ring {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff8a5c 0%, #a855f7 100%);
+    z-index: 1;
+    animation: ringPulse 3s infinite alternate;
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(0.98); opacity: 0.6; filter: blur(2px); }
+    100% { transform: scale(1.03); opacity: 1; filter: blur(6px); }
+}
+
+/* Card Details styling */
+.leader-details {
+    flex: 1;
+}
+
+.badge-row {
+    margin-bottom: 12px;
+}
+
+.leader-badge-premium {
+    background: linear-gradient(135deg, rgba(255, 138, 92, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    color: #ff8a5c;
+    border: 1px solid rgba(255, 138, 92, 0.2);
+    padding: 6px 18px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.leader-name-premium {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.leader-role-premium {
+    color: #60a5fa;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.leader-role-premium::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #60a5fa;
+    border-radius: 50%;
+}
+
+.leader-bio-premium {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* Social Area */
+.leader-socials-premium {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.contact-text {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.social-icons-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.premium-social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.premium-social-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* ប្ដូរពណ៌ទៅជាទឹកក្រូច និងរុញឡើងលើពេល Hover */
+.premium-social-btn:hover {
+    background: #ff8a5c;
+    color: #ffffff;
+    border-color: #ff8a5c;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 138, 92, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+    .premium-leader-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 25px;
+        gap: 35px;
+    }
+    .leader-role-premium {
+        justify-content: center;
+    }
+    .leader-socials-premium {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+
+/* =========================================
+   Dashboard For User Login (Dark Theme + Cyan Accent)
+========================================= */
+.dashboard-main-wrapper {
+    padding: 60px 20px;
+    background-color: #0f1117; /* Dark Theme ដូចរូបទី២របស់បង */
+    min-height: 80vh;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Welcome Banner */
+.dashboard-welcome-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.user-avatar-box {
+    width: 80px;
+    height: 80px;
+    background: #0ea5e9; /* ពណ៌ Cyan ដូចប៊ូតុង Register បង */
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+}
+
+.user-avatar-box svg {
+    width: 40px;
+    height: 40px;
+}
+
+.user-badge-role {
+    background: rgba(14, 165, 233, 0.15);
+    color: #0ea5e9;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.welcome-text h1 {
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.username-highlight {
+    color: #0ea5e9;
+}
+
+.welcome-text p {
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.date-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Stats Grid */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dash-stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dash-stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-card-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.stat-number {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stat-subtext {
+    color: #10b981; /* ពណ៌បៃតង */
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.stat-icon-box svg {
+    width: 28px;
+    height: 28px;
+}
+
+.box-cyan { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+.box-blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+.box-emerald { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+
+/* Progress Section */
+.dashboard-progress-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 35px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.progress-header h2 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.progress-percent {
+    color: #0ea5e9;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.dashboard-progress-section p {
+    color: #94a3b8;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.dashboard-progress-section p strong {
+    color: #ffffff;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+    border-radius: 99px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-welcome-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .welcome-text h1 {
+        font-size: 24px;
     }
 }
