@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SbayRean - Learn web development with clear guidance and real projects.">
+    <title>Tool-AI – SbayRean</title>
+    
+    <link rel="icon" type="image/png" href="../img/logoweb.png">
+    <link rel="stylesheet" href="../wwwroot/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* ---------------------------------
+           SPECIFIC STYLES FOR TOOL-AI PAGE
+        ----------------------------------- */
+        .hero { text-align: center; padding: 90px 20px 60px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(45,212,191,.08); border: 1px solid rgba(45,212,191,.25); border-radius: 999px; padding: 6px 16px; font-size: 13px; color: #2dd4bf; font-weight: 500; }
+        .hero h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 700; line-height: 1.15; max-width: 700px; color: #f1f5f9;}
+        .hero h1 span { color: #2dd4bf; }
+        .hero p { font-size: 17px; color: #6b7280; max-width: 520px; line-height: 1.7; }
+        .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+        .cta-primary { background: #2dd4bf; color: #0f1117; font-weight: 700; font-size: 15px; padding: 13px 28px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 24px rgba(45,212,191,.3); transition: opacity .2s, transform .15s; }
+        .cta-primary:hover { opacity: .88; transform: translateY(-1px); }
+        .cta-secondary { background: none; border: 1px solid #252d3d; color: #f1f5f9; font-size: 15px; padding: 13px 28px; border-radius: 10px; text-decoration: none; transition: border-color .2s, color .2s; }
+        .cta-secondary:hover { border-color: #2dd4bf; color: #2dd4bf; }
+
+        .cards-section { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px; }
+        .section-label { font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #6b7280; text-align: center; margin-bottom: 32px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #1a1f2e; border: 1px solid #252d3d; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: #f1f5f9; transition: border-color .2s, transform .2s, box-shadow .2s; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity .25s; }
+        .card-chat::before  { background: linear-gradient(90deg, #4f46e5, #7c6af7); }
+        .card-image::before { background: linear-gradient(90deg, #7e22ce, #db2777); }
+        .card-code::before  { background: linear-gradient(90deg, #0d9488, #0891b2); }
+        .card:hover { border-color: transparent; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+        .card:hover::before { opacity: 1; }
+        .card-icon { width: 52px; height: 52px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .card-chat  .card-icon { background: linear-gradient(135deg, #4f46e5, #7c6af7); }
+        .card-image .card-icon { background: linear-gradient(135deg, #7e22ce, #db2777); }
+        .card-code  .card-icon { background: linear-gradient(135deg, #0d9488, #0891b2); }
+        .card h3 { font-size: 18px; font-weight: 700; margin: 0; }
+        .card p  { font-size: 14px; color: #6b7280; line-height: 1.6; flex: 1; margin: 0; }
+        .card-arrow { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; margin-top: 4px; transition: gap .2s; }
+        .card:hover .card-arrow { gap: 10px; }
+        .card-chat  .card-arrow { color: #7c6af7; }
+        .card-image .card-arrow { color: #e879a8; }
+        .card-code  .card-arrow { color: #2dd4bf; }
+    </style>
+</head>
+
+<body style="background: #0f1117; color: #f1f5f9; font-family: 'DM Sans', sans-serif; min-height: 100dvh; margin: 0;">
+
+    <!-- HEADER / NAV -->
+    <header>
+        <div class="nav-header">
+            <div class="nav-logo">
+                <a href="../index.html" class="logo-link">
+                    <img src="../img/logoweb.png" alt="SbayRean Logo" class="avatar-icon">
+                    <span class="logo-text">SbayRean</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="login.html" class="login-link" data-i18n="login">Login</a>
+                <a href="register.html" class="register-btn" data-i18n="register">Register</a>
+
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round">☀️</span>
+                </label>
+
+                <img src="../uk-flag.png" alt="English" class="flag-icon" id="lang-toggle" style="cursor: pointer; width: 24px;">
+
+                <button class="hamburger-menu" id="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <nav class="nav-links" id="nav-content">
+            <a href="../index.html" data-i18n="home">Home</a>
+            <a href="projects.html" data-i18n="projects">Projects</a>
+            <a href="services.html" data-i18n="services">Services</a>
+            
+            <div class="dropdown">
+                <a href="courses.html" class="dropbtn" data-i18n="courses">Courses <span style="font-size: 10px;">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="Courses-Tools/linux-admin.html">Linux Admin</a>
+                    <a href="Courses-Tools/data-science.html">Data Science</a>
+                    <a href="Courses-Tools/clu-tools.html">CLU Tools</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="tool-ai.html" class="dropbtn active" data-i18n="tool_ai">Tool-AI <span style="font-size: 10px;">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="Ai-Tool/ai-chat.html">AI Chat</a>
+                    <a href="Ai-Tool/ai-image.html">AI Image</a>
+                    <a href="Ai-Tool/ai-code.html">AI Code</a>
+                </div>
+            </div>
+
+            <a href="about.html" data-i18n="about">About</a>
+            <a href="contact.html" data-i18n="contact">Contact</a>
+            <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-badge">✦ Powered by Claude AI &amp; Pollinations</div>
+        <h1>Supercharge Your Learning<br>with <span>AI Tools</span></h1>
+        <p>Three smart assistants to help you code faster, create visuals, and understand concepts — all in one place.</p>
+        <div class="hero-cta">
+            <a href="Ai-Tool/ai-chat.html" class="cta-primary">Start with AI Chat →</a>
+            <a href="#tools" class="cta-secondary">Explore All Tools</a>
+        </div>
+    </section>
+
+    <!-- CARDS SECTION -->
+    <section class="cards-section" id="tools">
+        <p class="section-label">Choose a tool to get started</p>
+        <div class="cards">
+            <a href="Ai-Tool/ai-chat.html" class="card card-chat">
+                <div class="card-icon">💬</div>
+                <h3>AI Chat Assistant</h3>
+                <p>A smart conversational AI to help you debug code, explain concepts, and brainstorm ideas in real time.</p>
+                <div class="card-arrow">Try AI Chat →</div>
+            </a>
+            <a href="Ai-Tool/ai-image.html" class="card card-image">
+                <div class="card-icon">🎨</div>
+                <h3>AI Image Generator</h3>
+                <p>Turn your ideas into stunning visuals. Generate custom images for your web projects instantly — free.</p>
+                <div class="card-arrow">Try AI Image →</div>
+            </a>
+            <a href="Ai-Tool/ai-code.html" class="card card-code">
+                <div class="card-icon">💻</div>
+                <h3>AI Code Helper</h3>
+                <p>Accelerate your workflow. Generate HTML, CSS, JS, Python and more with a single prompt.</p>
+                <div class="card-arrow">Try AI Code →</div>
+            </a>
+        </div>
+    </section>
+
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col about-col">
+                <h3 data-i18n="footer_name">SOKHM THANCHENG</h3>
+                <p data-i18n="footer_desc">Year 4 student majoring in Computer Science and Networking at <br>Chenla
+                    University.</p>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4 data-i18n="footer_quick_links">QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n="footer_link_home">Home</a></li>
+
+                    <li><a href="about.html" data-i18n="footer_link_about">About Me</a></li>
+
+                    <li><a href="courses.html" data-i18n="footer_link_courses">Courses</a></li>
+
+                    <li><a href="projects.html " data-i18n="footer_link_projects">Projects</a></li>
+
+                    <li><a href="services.html " data-i18n="footer_link_services">Services</a></li>
+
+                    <li><a href="privacy.html " data-i18n="footer_link_privacy">Privacy</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col social-col">
+                <h4 data-i18n="footer_follow">FOLLOW ME</h4>
+                <div class="social-icons">
+
+                    <a href="https://www.facebook.com/sokhomthangcheng" target="_blank" class="social-icon bg-facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://t.me/yourusername" target="_blank" class="social-icon bg-telegram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/yourusername" target="_blank" class="social-icon bg-linkedin">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.16-3.8c-1.1 0-1.8.6-2.1 1.2v-1h-2.2v9.1h2.2v-4.9c0-1.3.2-2.5 1.7-2.5 1.5 0 1.5 1.4 1.5 2.6v4.8h2.2zM6.5 8.7c.8 0 1.4-.6 1.4-1.4 0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4 0 .8.6 1.4 1.4 1.4zm1.1 9.8V9.4H5.4v9.1h2.2z" />
+                        </svg>
+                    </a>
+
+                    <a href="mailto:your.email@gmail.com" class="social-icon bg-gmail">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="social-icon bg-tiktok">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.5-.39 3.02-1.22 4.29-1.31 2-3.59 3.25-6.04 3.25-2.61 0-5.1-1.39-6.38-3.66-1.15-2.04-1.22-4.59-.1-6.72 1.05-1.99 3-3.32 5.18-3.65 1.13-.17 2.29-.12 3.39.23v4.06c-.4-.14-.82-.2-1.24-.22-1.32-.05-2.6.5-3.35 1.51-.76 1.02-1.02 2.38-.63 3.59.39 1.2 1.34 2.16 2.53 2.58 1.41.48 3.03.22 4.19-.66 1.18-.89 1.83-2.32 1.83-3.83V0h3.2z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026​ Sokhom Thangcheng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JS SCRIPT -->
+    <script src="../wwwroot/script.js"></script>
+</body>
+
+</html>
