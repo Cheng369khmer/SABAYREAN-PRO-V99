@@ -254,3 +254,200 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+//==== LINK TO BACKEND ADD API ========
+
+// រង់ចាំឱ្យទំព័រ Web ដំណើរការរួចរាល់សិន (DOM Ready)
+document.addEventListener('DOMContentLoaded', () => {
+    fetchProjects();
+});
+
+// អនុគមន៍សម្រាប់ទាញទិន្នន័យពី Node.js API
+async function fetchProjects() {
+    const projectContainer = document.querySelector('.projects-grid');
+    
+    try {
+        // ១. ហៅទៅកាន់ API Back-End ដែលប្អូនទើបតែបានបើកដំណើរការ
+        const response = await fetch('http://localhost:5000/api/projects');
+        
+        if (!response.ok) {
+            throw new Error('មិនអាចទាញទិន្នន័យពី Server បានទេ!');
+        }
+
+        // ២. បំប្លែងទិន្នន័យដែលទទួលបានឱ្យទៅជា JSON Array
+        const projects = await response.json();
+
+        // ៣. លុបទិន្នន័យចាស់ៗ (Static HTML) ចេញពី Container សិន
+        projectContainer.innerHTML = '';
+
+        // ៤. វិលជុំ (Loop) ទិន្នន័យដើម្បីបង្កើតជា Card ថ្មីៗធ្លាក់មកពី API
+        projects.forEach(project => {
+            const cardHTML = `
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="${project.image_url}" alt="${project.title}">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">${project.tags}</span>
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <a href="#" class="project-btn">👉 <span>View Project</span></a>
+                    </div>
+                </div>
+            `;
+            // ញាត់កូដ HTML ចូលទៅក្នុងទំព័រ Web
+            projectContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        projectContainer.innerHTML = `<p style="color: red; text-align: center;">មានបញ្ហាក្នុងការតភ្ជាប់ទៅកាន់ Server: ${error.message}</p>`;
+    }
+}
+
+// ==========================================
+// COURSE FETCHING & FILTERING LOGIC
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const coursesGrid = document.getElementById('coursesGrid');
+    const searchInput = document.getElementById('course-search');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // អថេរសម្រាប់ផ្ទុកទិន្នន័យ Course ទាំងអស់ពី API
+    let allCourses = []; 
+
+    // ពិនិត្យមើលថាតើយើងកំពុងនៅលើទំព័រ courses.html ឬអត់
+    if (coursesGrid) {
+        fetchCourses();
+    }
+
+    // 1. ទាញយកទិន្នន័យពី Backend (Port 5000)
+    async function fetchCourses() {
+        try {
+            const response = await fetch('http://localhost:5000/api/courses');
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            allCourses = await response.json();
+            
+            // បង្ហាញ Courses ទាំងអស់នៅពេលដើមដំបូង
+            displayCourses(allCourses);
+            
+            // បើកដំណើរការ Search និង Filter បន្ទាប់ពីទាញទិន្នន័យបាន
+            initializeFilters();
+
+        } catch (error) {
+            console.error('Error fetching courses:', error);
+            coursesGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #ff6b6b; background: rgba(255,0,0,0.1); border-radius: 8px;">
+                    <h3 style="margin-bottom: 10px;">⚠️ Connection Error</h3>
+                    <p>Cannot connect to the server. Please make sure your Node.js backend (Port 5000) is running.</p>
+                </div>`;
+        }
+    }
+
+    // 2. មុខងារសម្រាប់បង្ហាញកាត Course
+    function displayCourses(coursesToShow) {
+        coursesGrid.innerHTML = ''; // សម្អាតទិន្នន័យចាស់
+
+        if (coursesToShow.length === 0) {
+            coursesGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #94a3b8;">No courses found matching your criteria.</p>';
+            return;
+        }
+
+        coursesToShow.forEach(course => {
+            let cardHTML = '';
+
+            if (course.is_locked || course.category === 'upcoming') {
+                // ទម្រង់សម្រាប់ Course ដែលចាក់សោរ
+                cardHTML = `
+                    <div class="course-card" data-category="${course.category}">
+                        <div class="locked-img-wrapper">
+                            <img src="${course.image_url}" alt="${course.title}" class="course-img">
+                            <div class="lock-overlay">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lock-icon" style="width: 40px; height: 40px; color: white;">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="course-content">
+                            <h3>${course.title}</h3>
+                            <p>${course.description}</p>
+                            <div class="course-footer">
+                                <span class="course-price">${course.price}</span>
+                                <span class="enroll-btn disabled-btn" style="background: #475569; cursor: not-allowed; opacity: 0.7;">Locked</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // ទម្រង់សម្រាប់ Course ធម្មតា
+                cardHTML = `
+                    <div class="course-card" data-category="${course.category}">
+                        <img src="${course.image_url}" alt="${course.title}" class="course-img">
+                        <div class="course-content">
+                            <h3>${course.title}</h3>
+                            <p>${course.description}</p>
+                            <div class="course-footer">
+                                <span class="course-price">${course.price}</span>
+                                <a href="${course.link}" class="enroll-btn">View Course</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            coursesGrid.innerHTML += cardHTML;
+        });
+    }
+
+    // 3. មុខងារសម្រាប់ Search និង Filter
+    function initializeFilters() {
+        let currentFilter = 'all';
+        let currentSearchQuery = '';
+
+        // មុខងារចម្រាញ់ទិន្នន័យ (ហៅប្រើពេលចុចប៊ូតុង ឬវាយអក្សរ)
+        function filterData() {
+            let filteredCourses = allCourses.filter(course => {
+                // ឆែក Filter (Category)
+                const categoryMatch = currentFilter === 'all' || 
+                                      course.category === currentFilter || 
+                                      (currentFilter === 'comingsoon' && (course.is_locked || course.category === 'upcoming'));
+                
+                // ឆែក Search (Title)
+                const searchMatch = course.title.toLowerCase().includes(currentSearchQuery.toLowerCase());
+
+                return categoryMatch && searchMatch;
+            });
+
+            displayCourses(filteredCourses);
+        }
+
+        // ការចាប់យកព្រឹត្តិការណ៍ពេលវាយអក្សរក្នុងប្រអប់ Search
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value;
+                filterData();
+            });
+        }
+
+        // ការចាប់យកព្រឹត្តិការណ៍ពេលចុចប៊ូតុង Filter
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // លុប class 'active' ពីប៊ូតុងចាស់ ហើយដាក់លើប៊ូតុងដែលទើបចុច
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    currentFilter = e.target.getAttribute('data-filter');
+                    filterData();
+                });
+            });
+        }
+    }
+});
