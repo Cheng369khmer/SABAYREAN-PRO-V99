@@ -1,0 +1,464 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  /* កំណត់ពណ៌ Variables ដើម្បីឱ្យកូដដំណើរការបានពេញលេញទោះមិនមាន External CSS */
+  :root {
+    --color-background-primary: #151521;
+    --color-background-secondary: #1a1a2e;
+    --color-border-tertiary: #2a2a40;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #a0a0b5;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--color-background-primary);
+  }
+
+  .book {
+    font-family: 'Kantumruy Pro', sans-serif;
+    max-width: 680px;
+    padding: 2rem;
+    margin: 0 auto;
+  }
+
+  .cover {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: #0f6e56;
+    opacity: 0.25;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 60px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: #7f77dd;
+    opacity: 0.2;
+  }
+
+  .cover-tag {
+    display: inline-block;
+    background: #0f6e56;
+    color: #9fe1cb;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .cover h1 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .cover .sub {
+    color: #9fe1cb;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .cover-icons {
+    display: flex;
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .cover-pill {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 0.5px solid rgba(255,255,255,0.15);
+  }
+
+  .chapter {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-background-primary);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .ch-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 0.5px solid transparent;
+    transition: background 0.15s;
+  }
+
+  .ch-header:hover { background: var(--color-background-secondary); }
+
+  .ch-header.open {
+    border-bottom-color: var(--color-border-tertiary);
+    background: var(--color-background-secondary);
+  }
+
+  .ch-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .ch-title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .ch-arrow {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    transition: transform 0.2s;
+  }
+  .ch-header.open .ch-arrow { transform: rotate(180deg); }
+
+  .ch-body {
+    display: none;
+    padding: 1.25rem;
+  }
+  .ch-body.open { display: block; }
+
+  .ch-body p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .analogy-box {
+    background: var(--color-background-secondary);
+    border-left: 3px solid #1d9e75;
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .analogy-box strong {
+    color: #0f6e56;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  .reason-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .reason-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    background: var(--color-background-secondary);
+  }
+
+  .reason-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .reason-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 6px;
+  }
+
+  .reason-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ជួសជុលបញ្ហាកាតជាន់គ្នាក្នុង LifeCycle */
+  .lifecycle {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    margin-bottom: 1rem;
+  }
+
+  .lc-step {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    background: var(--color-background-secondary);
+    padding: 15px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .lc-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .lc-content {
+    flex: 1;
+  }
+
+  .lc-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 5px;
+  }
+
+  .lc-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .code-block {
+    background: #0d0d14;
+    border-radius: var(--border-radius-md);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--color-border-tertiary);
+  }
+
+  .code-block pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #e2e8f0;
+    white-space: pre;
+  }
+
+  .code-block .comment { color: #636e8a; }
+  .code-block .cmd { color: #9fe1cb; }
+  .code-block .arg { color: #fac775; }
+  .code-block .str { color: #af9bec; }
+
+  .tip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 15px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .tip-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tip-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .tip-text strong { color: var(--color-text-primary); font-weight: 500; display: block; margin-bottom: 4px; }
+
+</style>
+
+<div class="book">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">សៀវភៅណែនាំ Git និង GitHub</h2>
+
+  <div class="cover">
+    <div class="cover-tag">📖 Essential Guide</div>
+    <h1>ស្វែងយល់ពី Git & GitHub</h1>
+    <p class="sub">Version Control System · Beginner to Advanced Guide</p>
+    <div class="cover-icons">
+      <span class="cover-pill">5 ជំពូក</span>
+      <span class="cover-pill">Core Concepts</span>
+      <span class="cover-pill">Workflow</span>
+    </div>
+  </div>
+
+  <div class="chapter" id="ch1">
+    <div class="ch-header open" onclick="toggle('ch1')">
+      <div class="ch-num" style="background:#e1f5ee;color:#0f6e56;">១</div>
+      <span class="ch-title">តើអ្វីជាភាពខុសគ្នារវាង Git និង GitHub?</span>
+      <i class="ti ti-chevron-down ch-arrow" aria-hidden="true">▼</i>
+    </div>
+    <div class="ch-body open">
+      <p>មនុស្សជាច្រើនតែងតែច្រឡំថា Git និង GitHub គឺជាមួយ។ តាមពិតវាមានតួនាទីខុសគ្នាស្រឡះ៖</p>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="reason-icon" aria-hidden="true">💻</div>
+          <div class="reason-title">Git (កម្មវិធីក្នុងម៉ាស៊ីន)</div>
+          <div class="reason-desc">ជាឧបករណ៍ (Tool) សម្រាប់កត់ត្រា និងតាមដានរាល់ការផ្លាស់ប្តូរកូដ (Version Control) នៅក្នុងកុំព្យូទ័ររបស់អ្នកផ្ទាល់។ វាអាចដំណើរការបានដោយមិនបាច់មានអ៊ីនធឺណិត។</div>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon" aria-hidden="true">☁️</div>
+          <div class="reason-title">GitHub (វេទិកាលើពពក)</div>
+          <div class="reason-desc">ជាសេវាកម្មវេបសាយ (Cloud Hosting) សម្រាប់ផ្ទុកកូដដែលអ្នកបានកត់ត្រាដោយ Git។ វាជួយឱ្យអ្នកអាចចែករំលែកកូដ និងធ្វើការងារជាក្រុមបាន។</div>
+        </div>
+      </div>
+      <div class="analogy-box">
+        <strong>💡 ឧទាហរណ៍ងាយយល់៖</strong>
+        Git គឺដូចជា "កាមេរ៉ាថតរូប" ដែលជួយថតចម្លងការងាររបស់អ្នកទុក។ ចំណែកឯ GitHub គឺប្រៀបដូចជា "Facebook ឬ Google Photos" ដែលអ្នកយកទិន្នន័យពីកាមេរ៉ាទៅបង្ហោះ (Upload) ដើម្បីរក្សាទុកលើអ៊ីនធឺណិត និងចែករំលែកឱ្យគេឃើញ។
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="ch2">
+    <div class="ch-header" onclick="toggle('ch2')">
+      <div class="ch-num" style="background:#eeedfe;color:#534ab7;">២</div>
+      <span class="ch-title">ការរៀបចំដំបូង (Initial Setup)</span>
+      <i class="ti ti-chevron-down ch-arrow" aria-hidden="true">▼</i>
+    </div>
+    <div class="ch-body">
+      <p>មុននឹងចាប់ផ្តើមប្រើ Git អ្នកត្រូវប្រាប់វាឱ្យស្គាល់អត្តសញ្ញាណរបស់អ្នកសិន ដើម្បីកុំឱ្យច្រឡំពេលធ្វើការជាក្រុម។ បើក Terminal (ឬ Git Bash) រួចវាយកូដខាងក្រោម៖</p>
+      
+      <div class="code-block">
+        <pre><span class="comment"># កំណត់ឈ្មោះរបស់អ្នក</span>
+<span class="cmd">git</span> <span class="arg">config</span> --global user.name <span class="str">"CHENG Cyber"</span>
+
+<span class="comment"># កំណត់អ៊ីមែលរបស់អ្នក (ត្រូវប្រើអ៊ីមែលដែលបានចុះឈ្មោះក្នុង GitHub)</span>
+<span class="cmd">git</span> <span class="arg">config</span> --global user.email <span class="str">"your.email@gmail.com"</span>
+
+<span class="comment"># ពិនិត្យមើលព័ត៌មានដែលបានបញ្ចូល</span>
+<span class="cmd">git</span> <span class="arg">config</span> --list</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="ch3">
+    <div class="ch-header" onclick="toggle('ch3')">
+      <div class="ch-num" style="background:#faeeda;color:#854f0b;">៣</div>
+      <span class="ch-title">វដ្តការងារមូលដ្ឋាន (Basic Workflow)</span>
+      <i class="ti ti-chevron-down ch-arrow" aria-hidden="true">▼</i>
+    </div>
+    <div class="ch-body">
+      <p>រាល់ពេលដែលអ្នកសរសេរកូដ អ្នកត្រូវឆ្លងកាត់ដំណើរការទាំង ៤ ដំណាក់កាលនេះជានិច្ច៖</p>
+      <div class="lifecycle">
+        <div class="lc-step">
+          <div class="lc-dot" style="background:#e1f5ee;color:#0f6e56;">១</div>
+          <div class="lc-content">
+            <div class="lc-name">Init / Clone (ចាប់ផ្តើម)</div>
+            <div class="lc-desc">កំណត់ Folder កូដរបស់អ្នកឱ្យក្លាយជាទីតាំងគ្រប់គ្រងរបស់ Git ដោយប្រើប្រាស់ <code>git init</code> ឬទាញកូដពី GitHub មកដោយប្រើ <code>git clone</code>។</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-dot" style="background:#eeedfe;color:#534ab7;">២</div>
+          <div class="lc-content">
+            <div class="lc-name">Add (ត្រៀមខ្លួន)</div>
+            <div class="lc-desc">នៅពេលអ្នកកែឯកសារ អ្នកត្រូវបញ្ជូនវាទៅកាន់ Staging Area (ទីតាំងរង់ចាំ) ដោយប្រើ <code>git add .</code> ។ វាប្រៀបដូចជាការរៀបចំអីវ៉ាន់ដាក់ចូលក្នុងវ៉ាលី។</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-dot" style="background:#faeeda;color:#854f0b;">៣</div>
+          <div class="lc-content">
+            <div class="lc-name">Commit (រក្សាទុកចុងក្រោយ)</div>
+            <div class="lc-desc">រក្សាទុកការកែប្រែជាផ្លូវការនៅក្នុងម៉ាស៊ីន ដោយប្រាប់ពីមូលហេតុនៃការកែប្រែ (<code>git commit -m "សាររបស់អ្នក"</code>)។ ដូចជាការចាក់សោវ៉ាលី។</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-dot" style="background:#e6f1fb;color:#185fa5;">៤</div>
+          <div class="lc-content">
+            <div class="lc-name">Push (បញ្ជូនឡើងពពក)</div>
+            <div class="lc-desc">រុញកូដដែលបាន Commit ទាំងអស់ទៅកាន់ GitHub ដើម្បិរក្សាទុកសុវត្ថិភាព និងចែករំលែក (<code>git push</code>)។ ប្រៀបដូចជាការផ្ញើវ៉ាលីឡើងលើយន្តហោះ។</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="ch4">
+    <div class="ch-header" onclick="toggle('ch4')">
+      <div class="ch-num" style="background:#e6f1fb;color:#185fa5;">៤</div>
+      <span class="ch-title">Commands សំខាន់ៗប្រចាំថ្ងៃ</span>
+      <i class="ti ti-chevron-down ch-arrow" aria-hidden="true">▼</i>
+    </div>
+    <div class="ch-body">
+      <div class="code-block">
+        <pre><span class="comment"># ពិនិត្យមើលស្ថានភាពកូដ (ថាមានឯកសារណាត្រូវកែប្រែខ្លះ)</span>
+<span class="cmd">git</span> <span class="arg">status</span>
+
+<span class="comment"># ទាញយកកូដថ្មីៗពី GitHub មកកាន់ម៉ាស៊ីន (ពេលធ្វើការជាក្រុម)</span>
+<span class="cmd">git</span> <span class="arg">pull</span>
+
+<span class="comment"># មើលប្រវត្តិការងារ (ប្រវត្តិ Commit) ទាំងអស់</span>
+<span class="cmd">git</span> <span class="arg">log</span>
+
+<span class="comment"># បង្កើតមែកធាង (Branch) ថ្មីដើម្បីសរសេរមុខងារថ្មីដោយឡែក</span>
+<span class="cmd">git</span> <span class="arg">checkout</span> -b <span class="str">feature-login</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="ch5">
+    <div class="ch-header" onclick="toggle('ch5')">
+      <div class="ch-num" style="background:#faece7;color:#993c1d;">៥</div>
+      <span class="ch-title">ចំណុចគួរជៀសវាង (Bad Practices)</span>
+      <i class="ti ti-chevron-down ch-arrow" aria-hidden="true">▼</i>
+    </div>
+    <div class="ch-body">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="tip-icon">❌</div>
+          <div class="tip-text"><strong>កុំ Commit ដោយសារមិនច្បាស់លាស់</strong>កុំសរសេរ <code>git commit -m "update"</code> ឬ <code>"fix"</code> ដដែលៗ។ ត្រូវបញ្ជាក់ឱ្យច្បាស់ ឧទាហរណ៍៖ <code>"fix responsive issue on mobile menu"</code>។</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-icon">⚠️</div>
+          <div class="tip-text"><strong>កុំធ្វើការលើ Main Branch ផ្ទាល់</strong>រាល់ពេលមានកិច្ចការថ្មី ត្រូវបំបែក Branch (Branching) ជានិច្ច ជៀសវាងការខូចកូដដើមដែលកំពុងដំណើរការ។</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-icon">⛔</div>
+          <div class="tip-text"><strong>កុំ Push ឯកសារសម្ងាត់ចូល GitHub</strong>ត្រូវប្រើប្រាស់ឯកសារ <code>.gitignore</code> ដើម្បីលាក់ទិន្នន័យដូចជា Passwords, Database Credentials ឬ Folder ធំៗដូចជា <code>node_modules</code> ។</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggle(id) {
+  const ch = document.getElementById(id);
+  const header = ch.querySelector('.ch-header');
+  const body = ch.querySelector('.ch-body');
+  const isOpen = header.classList.contains('open');
+  header.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+</script>
