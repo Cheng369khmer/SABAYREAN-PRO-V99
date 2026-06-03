@@ -194,3 +194,57 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     // បញ្ជូនទៅកាន់ទំព័រ Login វិញ
     window.location.href = 'login.html'; 
 });
+
+
+//---- MY MAIN COURSES  ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('course-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const courseCards = document.querySelectorAll('.course-card');
+
+    // Function to filter the courses
+    const filterCourses = () => {
+        // Get the search text and convert to lowercase
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        // Find which filter button is currently active
+        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+
+        courseCards.forEach(card => {
+            // Get text from the title and description
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const desc = card.querySelector('p').textContent.toLowerCase();
+            const category = card.dataset.category;
+
+            // Check if the card matches the search text and the selected category
+            const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
+            const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+            // Show or hide the card based on the checks
+            if (matchesSearch && matchesFilter) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    };
+
+    // Listen for typing in the search box
+    if (searchInput) {
+        searchInput.addEventListener('input', filterCourses);
+    }
+
+    // Listen for clicks on the filter buttons
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove 'active' class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add 'active' class to the clicked button
+            btn.classList.add('active');
+            
+            // Run the filter function again
+            filterCourses();
+        });
+    });
+});

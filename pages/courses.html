@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="km">
 
@@ -7,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SbayRean - Learn web development with clear guidance and real projects.">
     <title>Tool-AI – SbayRean</title>
-    
+
     <link rel="icon" type="image/png" href="../img/logoweb.png">
     <link rel="stylesheet" href="../wwwroot/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
 
 </head>
 
@@ -36,7 +37,8 @@
                     <span class="slider round">☀️</span>
                 </label>
 
-                <img src="../uk-flag.png" alt="English" class="flag-icon" id="lang-toggle" style="cursor: pointer; width: 24px;">
+                <img src="../uk-flag.png" alt="English" class="flag-icon" id="lang-toggle"
+                    style="cursor: pointer; width: 24px;">
 
                 <button class="hamburger-menu" id="menu-btn">
                     <span class="bar"></span>
@@ -50,9 +52,10 @@
             <a href="../index.html" data-i18n="home">Home</a>
             <a href="projects.html" data-i18n="projects">Projects</a>
             <a href="services.html" data-i18n="services">Services</a>
-            
+
             <div class="dropdown">
-                <a href="courses.html" class="dropbtn" data-i18n="courses">Courses <span style="font-size: 10px;">▼</span></a>
+                <a href="courses.html" class="dropbtn" data-i18n="courses">Courses <span
+                        style="font-size: 10px;">▼</span></a>
                 <div class="dropdown-content">
                     <a href="Courses-Tools/linux-admin.html">Linux Admin</a>
                     <a href="Courses-Tools/data-science.html">Data Science</a>
@@ -61,7 +64,8 @@
             </div>
 
             <div class="dropdown">
-                <a href="tool-ai.html" class="dropbtn active" data-i18n="tool_ai">Tool-AI <span style="font-size: 10px;">▼</span></a>
+                <a href="tool-ai.html" class="dropbtn active" data-i18n="tool_ai">Tool-AI <span
+                        style="font-size: 10px;">▼</span></a>
                 <div class="dropdown-content">
                     <a href="Ai-Tool/ai-chat.html">AI Chat</a>
                     <a href="Ai-Tool/ai-image.html">AI Image</a>
@@ -75,113 +79,133 @@
         </nav>
     </header>
 
-
-    
-    <main class="courses-main-wrapper">
-        <div class="courses-container">
-            <div class="section-header">
-                <h2>Level Up Your Skills</h2>
-                <h1>Our Featured Courses</h1>
-            </div>
-
-            <div class="course-filter">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Web Dev</button>
-                <button class="filter-btn">Data Science</button>
-                <button class="filter-btn">Networking</button>
-            </div>
-
-            <div class="courses-grid">
-                
-                <div class="course-card">
-                    <div class="course-image">
-                        <div class="course-icon-bg" style="background: linear-gradient(135deg, #e34c26 0%, #f06529 100%);">
-                            <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M12 2L2 22h20L12 2zm0 3.82L18.18 19H5.82L12 5.82zM11 10h2v4h-2v-4zm0 5h2v2h-2v-2z"/></svg>
-                        </div>
-                        <span class="course-badge">Beginner</span>
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 40 Hours</span>
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 1.2k Students</span>
-                        </div>
-                        <h3>Front-End Web Development</h3>
-                        <p>Master HTML, CSS, and JavaScript to build responsive and interactive modern websites from scratch.</p>
-                        <div class="course-footer">
-                            <span class="course-price">$49.99</span>
-                            <a href="#" class="enroll-btn">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-image">
-                        <div class="course-icon-bg" style="background: linear-gradient(135deg, #f0db4f 0%, #e0c836 100%);">
-                            <svg viewBox="0 0 24 24" fill="#323330" width="48" height="48"><path d="M3 3h18v18H3V3zm4.73 15.04c.4-.85 1.19-1.04 1.6-1.04.41 0 1.2.19 1.6 1.04.14.28.61 1.27 1.48 1.27.7 0 1.25-.49 1.25-1.38V9.12h-2.14v8.32c0 .24-.13.38-.28.38-.15 0-.29-.14-.29-.38V9.12H8.81v8.78c0 1.54 1.13 2.16 1.96 2.16.83 0 1.84-.52 2.21-1.38l-1.33-.86c-.15.26-.35.43-.63.43-.28 0-.54-.15-.69-.47L7.73 18.04zM16.32 19c2.14 0 3.25-1.25 3.25-2.92 0-2.55-2.88-2.58-2.88-3.77 0-.44.42-.71.93-.71.49 0 .89.24 1.08.62l1.66-1.04C19.78 9.94 18.23 9 16.35 9c-2.17 0-3.14 1.35-3.14 2.8 0 2.59 3.01 2.65 3.01 3.86 0 .44-.45.65-.96.65-.54 0-1.12-.32-1.36-.8l-1.74 1.05c.67 1.44 2.19 2.44 4.16 2.44z"/></svg>
-                        </div>
-                        <span class="course-badge intermediate">Intermediate</span>
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 65 Hours</span>
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 850 Students</span>
-                        </div>
-                        <h3>Advanced JavaScript & Frameworks</h3>
-                        <p>Dive deep into JS concepts and learn popular frameworks like React and Vue to build robust web applications.</p>
-                        <div class="course-footer">
-                            <span class="course-price">$79.99</span>
-                            <a href="#" class="enroll-btn">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-image">
-                        <div class="course-icon-bg" style="background: linear-gradient(135deg, #43853d 0%, #305e2b 100%);">
-                             <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                        </div>
-                        <span class="course-badge advanced">Advanced</span>
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 55 Hours</span>
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 500 Students</span>
-                        </div>
-                        <h3>Backend Development with Node.js</h3>
-                        <p>Learn to build scalable server-side applications, RESTful APIs, and manage databases effectively.</p>
-                        <div class="course-footer">
-                            <span class="course-price">$89.99</span>
-                            <a href="#" class="enroll-btn">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-image">
-                        <div class="course-icon-bg" style="background: linear-gradient(135deg, #3776ab 0%, #1c3c56 100%);">
-                            <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-                        </div>
-                        <span class="course-badge">Beginner</span>
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 35 Hours</span>
-                            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 2.1k Students</span>
-                        </div>
-                        <h3>Python for Data Science</h3>
-                        <p>A comprehensive introduction to Python programming tailored for data analysis, visualization, and manipulation.</p>
-                        <div class="course-footer">
-                            <span class="course-price">$59.99</span>
-                            <a href="#" class="enroll-btn">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
+    <main class="courses-container">
+        
+        <h1 class="page-title" data-i18n="my_main_courses">MY MAIN COURSES</h1>
+        <p class="page-description" data-i18n="courses_desc">Expand your skills with our expert-led courses. Whether you are mastering Linux, diving into Data Science, or exploring modern tools, we have the right resources for your tech journey.</p>
+        
+        <div class="course-controls">
+            <input type="text" id="course-search" placeholder="Search for a course..." class="search-box">
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="linux">Linux</button>
+                <button class="filter-btn" data-filter="data">Data Science</button>
+                <button class="filter-btn" data-filter="tools">CLU Tools</button>
+                <button class="filter-btn" data-filter="comingsoon">Coming Soon</button>
             </div>
         </div>
-    </main>
-    
 
+        <div class="courses-grid">
+            
+            <div class="course-card" data-category="linux">
+                <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=800&auto=format&fit=crop"
+                    alt="Linux Admin" class="course-img">
+                <div class="course-content">
+                    <h3>Linux Administration</h3>
+                    <p>Master the command line, server management, and essential security practices.</p>
+                    <div class="course-footer">
+                        <span class="course-price">$49.99</span>
+                        <a href="Courses-Tools/linux-admin.html" class="enroll-btn">View Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="data">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                    alt="Data Science" class="course-img">
+                <div class="course-content">
+                    <h3>Data Science Bootcamp</h3>
+                    <p>Learn Python, Machine Learning, and how to analyze complex data sets.</p>
+                    <div class="course-footer">
+                        <span class="course-price">$79.99</span>
+                        <a href="Courses-Tools/data-science.html" class="enroll-btn">View Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="tools">
+                <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=800&auto=format&fit=crop"
+                    alt="CLU Tools" class="course-img">
+                <div class="course-content">
+                    <h3>CLU Tools Mastery</h3>
+                    <p>Unlock the full potential of CLU tools for modern development workflows.</p>
+                    <div class="course-footer">
+                        <span class="course-price">Free</span>
+                        <a href="Courses-Tools/clu-tools.html" class="enroll-btn">View Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="upcoming">
+                <div class="locked-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop"
+                        alt="Advanced Cybersecurity" class="course-img">
+                    <div class="lock-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lock-icon">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3>Advanced Cybersecurity</h3>
+                    <p>Master ethical hacking, network defense, and advanced security protocols. Coming very soon!</p>
+                    <div class="course-footer">
+                        <span class="course-price">$99.99</span>
+                        <span class="enroll-btn disabled-btn">Locked</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="upcoming">
+                <div class="locked-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop"
+                        alt="Cloud Architecture" class="course-img">
+                    <div class="lock-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lock-icon">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3>Cloud Architecture</h3>
+                    <p>Learn to design, build, and maintain scalable cloud infrastructure. Coming very soon!</p>
+                    <div class="course-footer">
+                        <span class="course-price">$89.99</span>
+                        <span class="enroll-btn disabled-btn">Locked</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="upcoming">
+                <div class="locked-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop"
+                        alt="AI Engineering" class="course-img">
+                    <div class="lock-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lock-icon">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3>AI Engineering</h3>
+                    <p>Dive deep into neural networks, LLMs, and machine learning models. Coming very soon!</p>
+                    <div class="course-footer">
+                        <span class="course-price">$129.99</span>
+                        <span class="enroll-btn disabled-btn">Locked</span>
+                    </div>
+                </div>
+            </div>
+
+        </div> </main> 
+
+    
 
     <footer class="site-footer">
         <div class="footer-container">
