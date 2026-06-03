@@ -79,6 +79,8 @@
         </nav>
     </header>
 
+    <!---  Manage Files By Server.js / backend  -->
+
     <main class="courses-container">
 
         <h1 class="page-title" data-i18n="my_main_courses">MY MAIN COURSES</h1>
@@ -99,127 +101,9 @@
             </div>
         </div>
 
-        <div class="courses-grid">
+        <div class="courses-grid" id="coursesGrid"></div>
 
-            <div class="course-card" data-category="linux">
-                <img src="https://th.bing.com/th/id/OIP.HAMhE2YpSPGtWmo0T67EHgHaEo?w=262&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
-                    alt="Linux Admin" class="course-img">
-                <div class="course-content">
-                    <h3>Linux Administration</h3>
-                    <p>Master the command line, server management, and essential security practices.</p>
-                    <div class="course-footer">
-                        <span class="course-price">$49.99</span>
-                        <a href="Courses-Tools/linux-admin.html" class="enroll-btn">View Course</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="data">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
-                    alt="Data Science" class="course-img">
-                <div class="course-content">
-                    <h3>Data Science Bootcamp</h3>
-                    <p>Learn Python, Machine Learning, and how to analyze complex data sets.</p>
-                    <div class="course-footer">
-                        <span class="course-price">$79.99</span>
-                        <a href="Courses-Tools/data-science.html" class="enroll-btn">View Course</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="tools">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.j77tRUkX0S5L5tgjYYAGDwHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
-                    alt="CLU Tools" class="course-img">
-                <div class="course-content">
-                    <h3>Chenla University</h3>
-                    <p>Unlock the full potential of CLU tools for modern development workflows.</p>
-                    <div class="course-footer">
-                        <span class="course-price">399.99$</span>
-                        <a href="Courses-Tools/clu-tools.html" class="enroll-btn">View Course</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="git-github">
-                <img src="https://www.masaischool.com/blog/content/images/2022/08/Getting-started-with-Git-Commands.png"
-                    alt="Github" class="course-img">
-                <div class="course-content">
-                    <h3>Git And Github</h3>
-                    <p>How to Create Git and github for Beginner and to Advance </p>
-                    <div class="course-footer">
-                        <span class="course-price">FREE</span>
-                        <a href="./Courses-Tools/git_github_khmer.html" class="enroll-btn">View Course</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="upcoming">
-                <div class="locked-img-wrapper">
-                    <img src="https://www.bleepstatic.com/content/hl-images/2023/05/26/cybersecurity.jpg"
-                        alt="Advanced Cybersecurity" class="course-img">
-                    <div class="lock-overlay">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="lock-icon">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="course-content">
-                    <h3>Advanced Cybersecurity</h3>
-                    <p>Master ethical hacking, network defense, and advanced security protocols. Coming very soon!</p>
-                    <div class="course-footer">
-                        <span class="course-price">$99.99</span>
-                        <span class="enroll-btn disabled-btn">Locked</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="upcoming">
-                <div class="locked-img-wrapper">
-                    <img src="https://static.vecteezy.com/system/resources/previews/029/725/794/non_2x/cloud-data-storage-database-cloud-computing-concept-free-photo.JPG"
-                        alt="Cloud Architecture" class="course-img">
-                    <div class="lock-overlay">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="lock-icon">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="course-content">
-                    <h3>Cloud Architecture</h3>
-                    <p>Learn to design, build, and maintain scalable cloud infrastructure. Coming very soon!</p>
-                    <div class="course-footer">
-                        <span class="course-price">$89.99</span>
-                        <span class="enroll-btn disabled-btn">Locked</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-card" data-category="upcoming">
-                <div class="locked-img-wrapper">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.O9nuuVQ9RKIU1QY8cbszlAHaEK?w=1920&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3"
-                        alt="AI Engineering" class="course-img">
-                    <div class="lock-overlay">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="lock-icon">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="course-content">
-                    <h3>AI Engineering</h3>
-                    <p>Dive deep into neural networks, LLMs, and machine learning models. Coming very soon!</p>
-                    <div class="course-footer">
-                        <span class="course-price">$129.99</span>
-                        <span class="enroll-btn disabled-btn">Locked</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        
     </main>
 
 
