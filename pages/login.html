@@ -1,598 +1,234 @@
 <!DOCTYPE html>
-<html lang="km">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SbayRean - Premium Join Us</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>SbayRean - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'DM Sans', sans-serif;
-        }
-
+        /* CSS សម្រាប់រចនា Form */
         body {
-            background: linear-gradient(135deg, #1a2360 0%, #3e50b4 100%);
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f4f7f6;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
+            height: 100vh;
+            margin: 0;
         }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: #ff8a5c;
-            border-radius: 50%;
-            filter: blur(160px);
-            opacity: 0.35;
-            top: -150px;
-            left: -150px;
-            z-index: 1;
-            animation: pulse 6s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-
-            100% {
-                transform: scale(1.1);
-                opacity: 0.5;
-            }
-        }
-
-        .main-wrapper {
-            display: flex;
-            align-items: center;
-            position: relative;
-            width: 950px;
-            max-width: 95%;
-            z-index: 10;
-        }
-
-        /* ----- ពង្រីករូបភាពឱ្យធំ ----- */
-        .character-container {
-            width: 480px;
-            height: auto;
-            z-index: 20;
-            position: relative;
-            margin-right: -100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform-origin: center right;
-        }
-
-        .show-login-state .character-container {
-            transform: translateX(30px) rotate(-4deg) scale(1.05);
-        }
-
-        .character-container img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(15px 25px 30px rgba(0, 0, 0, 0.5));
-        }
-
-        /* ----- ទម្រង់ Form ដែលបានដកប្រអប់ចេញ ----- */
-        .form-card {
-            flex: 1;
-            position: relative;
-            /* លុបផ្ទៃខាងក្រោយ គែម និងស្រមោលចេញ */
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 40px 45px 40px 100px;
-            min-height: 740px;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        .header-section {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 30;
-        }
-
-        .header-section h1 {
-            font-size: 34px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-section p {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-        }
-
-        .toggle-switch-btn {
-            background: rgba(255, 255, 255, 0.12);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 10px 28px;
-            border-radius: 99px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-switch-btn:hover {
+        .container {
             background: white;
-            color: #3e50b4;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .sliding-forms-container {
-            position: relative;
-            height: 520px;
-        }
-
-        .form-inner {
-            position: absolute;
-            top: 0;
-            left: 0;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             width: 100%;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 400px;
         }
-
-        #register-section {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #login-section {
-            transform: translateX(120%);
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .show-login-state #register-section {
-            transform: translateX(-120%);
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .show-login-state #login-section {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Inputs */
-        .input-box {
-            margin-bottom: 16px;
-            position: relative;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .input-box input {
-            width: 100%;
-            padding: 15px 16px 15px 52px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            background-color: rgba(255, 255, 255, 0.06);
-            color: white;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0 30px #4254b1 inset !important;
-            -webkit-text-fill-color: white !important;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-
-        .input-box input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .input-box:focus-within input {
-            background-color: rgba(255, 255, 255, 0.12);
-            border-color: #ff8a5c;
-            box-shadow: 0 0 0 4px rgba(255, 138, 92, 0.2);
-        }
-
-        .input-box svg {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            fill: rgba(255, 255, 255, 0.7);
-            transition: fill 0.3s;
-        }
-
-        .input-box:focus-within svg {
-            fill: #ff8a5c;
-        }
-
-        /* ----- Gender Checkbox Style ----- */
-        .gender-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 18px;
-            padding-left: 5px;
-        }
-
-        .gender-title {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .custom-checkbox {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            padding-left: 28px;
-            color: white;
-            font-size: 14px;
-            user-select: none;
-        }
-
-        .custom-checkbox input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-
-        .checkmark {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 20px;
-            width: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .custom-checkbox:hover input~.checkmark {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .custom-checkbox input:checked~.checkmark {
-            background-color: #ff8a5c;
-            border-color: #ff8a5c;
-        }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 6px;
-            top: 2px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2.5px 2.5px 0;
-            transform: rotate(45deg);
-        }
-
-        .custom-checkbox input:checked~.checkmark:after {
-            display: block;
-        }
-
-        /* Action Button */
-        .action-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ff8a5c 0%, #ff6b35 100%);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
-            margin-top: 5px;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 107, 53, 0.5);
-        }
-
-        .action-btn:active {
-            transform: translateY(0);
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: -8px;
+        h2 {
+            text-align: center;
+            color: #333;
             margin-bottom: 20px;
         }
-
-        .forgot-password a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 13.5px;
-            transition: color 0.3s;
+        .input-group {
+            margin-bottom: 15px;
         }
-
-        .forgot-password a:hover {
-            color: #ff8a5c;
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Important for width 100% */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .toggle-text a {
+            color: #007bff;
+            cursor: pointer;
             text-decoration: underline;
         }
-
-        /* Social Login Options */
-        .social-divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0 15px 0;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-        }
-
-        .social-divider::before,
-        .social-divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .social-divider::before {
-            margin-right: 15px;
-        }
-
-        .social-divider::after {
-            margin-left: 15px;
-        }
-
-        .social-container {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-btn {
-            flex: 1;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .social-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-wrapper {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .character-container {
-                margin-right: 0;
-                margin-bottom: -40px;
-                width: 300px;
-            }
-
-            .form-card {
-                padding: 40px 25px;
-                width: 100%;
-                min-height: 600px;
-            }
+        /* លាក់ Form Register ជាលំនាំដើម */
+        #registerForm {
+            display: none;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="main-wrapper">
-
-        <div class="character-container">
-            <img src="../img/login.webp" alt="SbayRean Character">
+<div class="container">
+    <div id="loginForm">
+        <h2>Login to SbayRean</h2>
+        <div class="input-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required>
         </div>
-
-        <div class="form-card" id="main-form-card">
-
-            <div class="header-section">
-                <h1 id="form-title">Join Us</h1>
-                <p id="form-subtitle">Create your account in just a few easy steps</p>
-                <button class="toggle-switch-btn" id="switch-btn" onclick="toggleFormView()">Switch to Sign In</button>
-            </div>
-
-            <div class="sliding-forms-container">
-
-                <div class="form-inner" id="register-section">
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                        </svg>
-                        <input type="text" placeholder="Full Name">
-                    </div>
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                        </svg>
-                        <input type="email" placeholder="Gmail Address">
-                    </div>
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-                        </svg>
-                        <input type="password" placeholder="Password (Min 8 Characters)">
-                    </div>
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-                        </svg>
-                        <input type="password" placeholder="Confirm Password">
-                    </div>
-
-                    <div class="gender-wrapper">
-                        <span class="gender-title">Gender:</span>
-                        <label class="custom-checkbox">
-                            <input type="radio" name="gender" value="male">
-                            <span class="checkmark"></span>
-                            Male
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="radio" name="gender" value="female">
-                            <span class="checkmark"></span>
-                            Female
-                        </label>
-                    </div>
-
-                    <button class="action-btn">Next</button>
-
-                    <div class="social-divider">Or continue with</div>
-                    <div class="social-container">
-                        <button class="social-btn">
-                            <svg viewBox="0 0 24 24" fill="white">
-                                <path
-                                    d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
-                            </svg>
-                            Google
-                        </button>
-                        <button class="social-btn">
-                            <svg viewBox="0 0 24 24" fill="white">
-                                <path
-                                    d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" />
-                            </svg>
-                            Facebook
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-inner" id="login-section">
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                        </svg>
-                        <input type="email" placeholder="Gmail Address">
-                    </div>
-                    <div class="input-box">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-                        </svg>
-                        <input type="password" placeholder="Password">
-                    </div>
-
-                    <div class="forgot-password">
-                        <a href="#">Forgot password?</a>
-                    </div>
-
-                    <button class="action-btn">Sign In</button>
-
-                    <div class="social-divider">Or continue with</div>
-                    <div class="social-container">
-                        <button class="social-btn">
-                            <svg viewBox="0 0 24 24" fill="white">
-                                <path
-                                    d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
-                            </svg>
-                            Google
-                        </button>
-                        <button class="social-btn">
-                            <svg viewBox="0 0 24 24" fill="white">
-                                <path
-                                    d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" />
-                            </svg>
-                            Facebook
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+        <div class="input-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
         </div>
+        <button onclick="handleLogin()">Sign In</button>
+        <p class="toggle-text">Don't have an account? <a onclick="toggleForms()">Register here</a></p>
     </div>
 
-    <script>
-        let showingLogin = false;
+    <div id="registerForm">
+        <h2>Create an Account</h2>
+        <div class="input-group">
+            <label for="regFirstName">First Name</label>
+            <input type="text" id="regFirstName" required>
+        </div>
+        <div class="input-group">
+            <label for="regLastName">Last Name</label>
+            <input type="text" id="regLastName" required>
+        </div>
+        <div class="input-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" required>
+        </div>
+        <div class="input-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" required>
+        </div>
+        <button onclick="handleRegister()">Sign Up</button>
+        <p class="toggle-text">Already have an account? <a onclick="toggleForms()">Login here</a></p>
+    </div>
+</div>
 
-        function toggleFormView() {
-            const formCard = document.getElementById('main-form-card');
-            const btn = document.getElementById('switch-btn');
-            const title = document.getElementById('form-title');
-            const subtitle = document.getElementById('form-subtitle');
+<script>
+    // ==========================================
+    // ១. មុខងារប្តូរផ្ទាំង qua មកវិញរវាង Login និង Register
+    // ==========================================
+    function toggleForms() {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        
+        if (loginForm.style.display === 'none') {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        } else {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        }
+    }
 
-            showingLogin = !showingLogin;
+    // ==========================================
+    // ២. មុខងារបញ្ជូនទិន្នន័យ Register ទៅ Backend
+    // ==========================================
+    async function handleRegister() {
+        // ចាប់យកតម្លៃ និងកាត់ចោលការដកឃ្លាដែលមិនចាំបាច់ (trim)
+        const firstName = document.getElementById('regFirstName').value.trim();
+        const lastName = document.getElementById('regLastName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
 
-            if (showingLogin) {
-                formCard.classList.add('show-login-state');
-                btn.textContent = "Switch to Sign Up";
-                title.textContent = "Welcome Back";
-                subtitle.textContent = "Log in to your account to continue";
+        // ពិនិត្យមើលថាគាត់បានបំពេញគ្រប់ចន្លោះឬនៅ?
+        if (!firstName || !lastName || !email || !password) {
+            alert('សូមបំពេញព័ត៌មានឱ្យបានគ្រប់ជ្រុងជ្រោយ (Please fill in all fields).');
+            return;
+        }
+
+        try {
+            // ផ្ញើសំណើ (Request) ទៅកាន់ API
+            const response = await fetch('http://localhost:5000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ firstName, lastName, email, password })
+            });
+
+            const data = await response.json();
+            
+            // ប្រសិនបើចុះឈ្មោះជោគជ័យ
+            if (response.ok) {
+                alert('ការចុះឈ្មោះជោគជ័យ! សូមចូលគណនី។ (Registration successful!)');
+                toggleForms(); // ប្តូរទៅផ្ទាំង Login វិញដោយស្វ័យប្រវត្តិ
+                document.getElementById('loginEmail').value = email; // វាយបញ្ចូល Email ឱ្យគាត់ស្រាប់ៗ
             } else {
-                formCard.classList.remove('show-login-state');
-                btn.textContent = "Switch to Sign In";
-                title.textContent = "Join Us";
-                subtitle.textContent = "Create your account in just a few easy steps";
+                // ប្រសិនបើមានបញ្ហា (ឧ. អ៊ីមែលជាន់គ្នា)
+                alert(data.message);
             }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('មិនអាចតភ្ជាប់ទៅកាន់ Server បានទេ! សូមឆែកមើល Server របស់អ្នក។');
+        }
+    }
+
+    // ==========================================
+    // ៣. មុខងារបញ្ជូនទិន្នន័យ Login ទៅ Backend
+    // ==========================================
+    async function handleLogin() {
+        // ចាប់យកតម្លៃ និងកាត់ចោលការដកឃ្លាដែលមិនចាំបាច់
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (!email || !password) {
+            alert('សូមបញ្ចូលអ៊ីមែល និងលេខសម្ងាត់របស់អ្នក (Please enter your email and password).');
+            return;
         }
 
+        try {
+            // ផ្ញើសំណើ (Request) ទៅកាន់ API
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
+            const data = await response.json();
 
-        // ឧទាហរណ៍ កូដសម្រាប់បញ្ជូនទំព័រ (Redirect) ពេល Login ជោគជ័យ
-        if (userRole === 'user') {
-            // ព្រោះ login.html និង dashboard.html នៅកម្រិតស្មើគ្នា (ក្នុង folder pages ដូចគ្នា)
-            window.location.href = 'dashboard.html';
+            // ប្រសិនបើ Login ជោគជ័យ
+            if (response.ok) {
+                alert('ចូលគណនីទទួលបានជោគជ័យ! (Login successful!)');
+                
+                // រក្សាទុកទិន្នន័យ User ទៅក្នុង Browser (Local Storage) ដើម្បីឱ្យទំព័រផ្សេងៗទៀតអាចស្គាល់គាត់
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
 
-        } else if (userRole === 'admin') {
-            // ចូលទៅក្នុង folder admin ដែលនៅក្នុង pages ស្រាប់
-            window.location.href = 'admin/manage-users.html';
-
-        } else if (userRole === 'superadmin') {
-            // ចូលទៅក្នុង folder superadmin ដែលនៅក្នុង pages ស្រាប់
-            window.location.href = 'superadmin/dashboard.html';
+                // 🔴 ចំណុចសំខាន់៖ ចាប់យក Role ពីទិន្នន័យដែល Backend ផ្ញើមក។ 
+                // បើគ្មានបញ្ជាក់ទេ ដាក់វាជា 'user' ធម្មតាជាលំនាំដើម
+                const userRole = data.user.role || 'user'; 
+                
+                // ==========================================
+                // ៤. កំណត់ការបញ្ជូនទំព័រ (Redirect) តាមសិទ្ធិ (Role)
+                // ==========================================
+                if (userRole === 'superadmin') {
+                    // បញ្ជូនទៅកាន់ Dashboard របស់ Super Admin
+                    window.location.href = 'superadmin/dashboard.html';
+                } else if (userRole === 'admin') {
+                    // បញ្ជូនទៅកាន់ Dashboard របស់ Admin ធម្មតា
+                    window.location.href = 'admin/manage-users.html';
+                } else {
+                    // បញ្ជូនទៅកាន់ Dashboard របស់ User ធម្មតា
+                    window.location.href = 'dashboard.html'; 
+                }
+            } else {
+                // ប្រសិនបើខុសលេខសម្ងាត់ ឬរកមិនឃើញគណនី
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('មិនអាចតភ្ជាប់ទៅកាន់ Server បានទេ! សូមប្រាកដថា Server កំពុងដំណើរការ។');
         }
-    </script>
+    }
+</script>
+
 </body>
-
 </html>
